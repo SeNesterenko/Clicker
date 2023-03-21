@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64656d66470ab374b99edaf7ac1ab9e7, type: 3}
   m_Name: Advertising
   m_EditorClassIdentifier: 
-  _improvementsName: 
+  _improvementsName: Advertising
   _buy: 0
   _upgradePrice: 0
   _income: 0

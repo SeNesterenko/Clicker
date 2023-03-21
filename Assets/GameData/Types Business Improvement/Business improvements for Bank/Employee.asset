@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _improvementsName: Employee
   _buy: 0
-  _upgradePrice: 0
-  _income: 0
+  _upgradePrice: 100
+  _income: 10
