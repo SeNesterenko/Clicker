@@ -1,0 +1,19 @@
+using System;
+using UnityEngine;
+
+namespace Models
+{
+    [Serializable]
+    public class BusinessImprovementModel
+    {
+        public bool IsPurchased => _isPurchased;
+        public string Name => _name;
+        public float Price => _price;
+        public float Income => _income;
+        
+        [SerializeField] private bool _isPurchased;
+        [SerializeField] private string _name;
+        [SerializeField] private float _price;
+        [SerializeField] private float _income;
+    }
+}
