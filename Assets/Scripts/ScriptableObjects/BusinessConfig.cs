@@ -1,12 +1,13 @@
-
 using Models;
 using UnityEngine;
 
-namespace ScriptableObject
+namespace ScriptableObjects
 {
     [CreateAssetMenu(fileName = "BusinessConfig", menuName = "BusinessConfig")]
-    public class BusinessConfig : UnityEngine.ScriptableObject
+    public class BusinessConfig : ScriptableObject
     {
+        public BusinessModel[] BusinessModels => _businessModel;
+        
         [SerializeField] private BusinessModel[] _businessModel;
     }
 }
