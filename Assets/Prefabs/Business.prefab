@@ -965,7 +965,7 @@ MonoBehaviour:
   _name: {fileID: 5503779502940139822}
   _level: {fileID: 307534810915245936}
   _income: {fileID: 2119521949145217835}
-  _businessUpgrade:
+  _businessImprovementPrefabs:
   - {fileID: 8416538046435299469}
   - {fileID: 574067875919157218}
   _processIncome: {fileID: 797679016461545484}

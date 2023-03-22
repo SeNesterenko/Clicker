@@ -9,11 +9,11 @@ namespace Models
         public bool IsPurchased => _isPurchased;
         public string Name => _name;
         public float Price => _price;
-        public float Income => _income;
+        public float BoostIncome => _boostIncome;
         
         [SerializeField] private bool _isPurchased;
         [SerializeField] private string _name;
         [SerializeField] private float _price;
-        [SerializeField] private float _income;
+        [SerializeField] private float _boostIncome;
     }
 }
