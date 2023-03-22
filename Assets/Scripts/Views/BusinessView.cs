@@ -1,4 +1,3 @@
-using System;
 using Models;
 using TMPro;
 using UnityEngine;
@@ -18,7 +17,7 @@ namespace Views
         [SerializeField] private TMP_Text _levelUpPrice;
         [SerializeField] private Button _levelUpButton;
         
-        public void Initialize(BusinessModel model, UnityAction<string> onLevelUp)
+        public void Initialize(BusinessModel model, UnityAction onLevelUp)
         {
             _name.text = model.Name;
             _level.text = "Level " + model.Level;
@@ -30,7 +29,7 @@ namespace Views
                 _businessImprovementPrefabs[i].Initialize(model.TypesImprovement[i]);
             }
             
-            //_levelUpButton.onClick.AddListener(onLevelUp);
+            _levelUpButton.onClick.AddListener(onLevelUp);
             
             _processIncomeView.Initialize();
         }

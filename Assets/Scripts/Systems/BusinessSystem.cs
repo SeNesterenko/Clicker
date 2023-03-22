@@ -32,7 +32,7 @@ namespace Systems
             }
         }
 
-        public void OnLevelUp(string model)
+        public void OnLevelUp()
         {
             
         }

@@ -965,11 +965,12 @@ MonoBehaviour:
   _name: {fileID: 5503779502940139822}
   _level: {fileID: 307534810915245936}
   _income: {fileID: 2119521949145217835}
-  _levelUpPrice: {fileID: 8202392172523045453}
   _businessImprovementPrefabs:
   - {fileID: 8416538046435299469}
   - {fileID: 574067875919157218}
   _processIncomeView: {fileID: 797679016461545484}
+  _levelUpPrice: {fileID: 8202392172523045453}
+  _levelUpButton: {fileID: 963244736043944068}
 --- !u!1 &2119521949145217833
 GameObject:
   m_ObjectHideFlags: 0
