@@ -1,6 +1,7 @@
 using System;
+using System.Collections.Generic;
 using Models;
-using ScriptableObject;
+using ScriptableObjects;
 using UnityEngine;
 
 namespace Systems
@@ -13,38 +14,20 @@ namespace Systems
         [SerializeField] private BusinessConfig _businessConfig;
 
         [SerializeField] private BusinessModel[] _businessModels;
+        
+        private readonly Dictionary<int, BusinessModel> _dictionaryBusinesses = new () ;
 
-       // private void Awake()
-       // {
-       //     _businessModels = (BusinessModel[])_businessConfig.BusinessModels;
-       // }
-//
-       // public int GetLevelImprovement()
-       // {
-       //     foreach (var businessModel in _businessModels)
-       //     {
-       //        return businessModel.Level;
-       //     }
-//
-       //     return -1;
-       // }
-//
-       // public int GetIncomeImprovement()
-       // {
-       //     foreach (var businessModel in _businessModels)
-       //     {
-       //         return (int)businessModel.Income;
-       //     }
-       //     
-       //     foreach (var businessModel in _businessModels)
-       //     {
-       //         foreach (var businessImprovementModel in businessModel.TypesImprovement)
-       //         {
-       //             businessImprovementModel
-       //         }
-       //     }
-//
-       //     return -1;
-       // }
+        private void Awake()
+        {
+            for (var i = 0; i < _businessConfig.BusinessModels.Length; i++)
+            {
+                _dictionaryBusinesses.Add(i,_businessConfig.BusinessModels[i]);
+            }
+        }
+        
+        public IReadOnlyDictionary<int,BusinessModel> GetDictionaryBusinesses()
+        {
+            return _dictionaryBusinesses;
+        }
     }
 }
