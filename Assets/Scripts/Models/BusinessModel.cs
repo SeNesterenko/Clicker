@@ -8,7 +8,7 @@ namespace Models
     {
         public string Name => _name;
         public int Level => _level;
-        public float Income => _income;
+        public float Income => _income; 
         public BusinessImprovementModel[] TypesImprovement => _typesImprovement;
         
         [SerializeField] private string _name;
