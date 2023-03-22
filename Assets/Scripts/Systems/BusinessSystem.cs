@@ -1,6 +1,5 @@
-using System.Collections.Generic;
 using Models;
-using ScriptableObject;
+using ScriptableObjects;
 using UnityEngine;
 using Views;
 
@@ -10,17 +9,32 @@ namespace Systems
     {
         [SerializeField] private Transform _parent;
         [SerializeField] private BusinessView _businessPrefab;
+        [SerializeField] private BusinessConfig _businessConfig;
 
-        private readonly List<BusinessView> _businessViews = new ();
-        
+        private BusinessView[] _businessViews;
+        private BusinessModel[] _businessModels;
+
+        private void Start()
+        {
+            var test = _businessConfig.BusinessModels;
+            Initialize(test);
+        }
 
         public void Initialize(BusinessModel[] businessModels)
         {
-            foreach (var businessModel in businessModels)
+            _businessModels = businessModels;
+            _businessViews = new BusinessView[_businessModels.Length];
+            
+            for (var i = 0; i < _businessModels.Length; i++)
             {
-                _businessViews.Add(Instantiate(_businessPrefab, _parent));
-                _businessViews[^1].Initialize(businessModel);
+                _businessViews[i] = Instantiate(_businessPrefab, _parent);
+                _businessViews[i].Initialize(_businessModels[i], OnLevelUp);
             }
+        }
+
+        public void OnLevelUp(string model)
+        {
+            
         }
     }
 }
