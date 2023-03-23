@@ -9,17 +9,16 @@ namespace Controllers
     public class BusinessController : MonoBehaviour
     {
         [SerializeField] private BusinessView _businessView;
-        [SerializeField] private ProcessIncomeView _processIncomeView;
+        [SerializeField] private ProcessIncomeController _processIncomeController;
         [SerializeField] private BusinessImprovementController[] _businessImprovementControllers;
         [SerializeField] private Button _levelUpButton;
-        [SerializeField] private Timer _timer;
 
         private BusinessModel _model;
 
         public void Initialize(BusinessModel model)
         {
             _model = model;
-            _timer.Initialize(model.IncomeDelay, _processIncomeView);
+            _processIncomeController.Initialize(model.IncomeDelay);
             
             for (var i = 0; i < _businessImprovementControllers.Length; i++)
             {
@@ -37,7 +36,7 @@ namespace Controllers
 
         private void DisplayView()
         {
-            _businessView.DisplayView(_model.Name, _model.Level.ToString(), _model.Income.ToString(), _model.Price.ToString());
+            _businessView.DisplayView(_model.Name, _model.Level.ToString(), _model.Income.ToString(), _model.ToString());
         }
 
         private void Update()

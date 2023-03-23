@@ -5,14 +5,14 @@ namespace Controllers
 {
     public class ProcessIncomeController : MonoBehaviour
     {
+        [SerializeField] private ProcessIncomeView _processIncomeView;
+        
         private float _currentTime, _timeDelay;
-        private ProcessIncomeView _view;
- 
-        public void Initialize(float timeDelay, ProcessIncomeView view)
+
+        public void Initialize(float timeDelay)
         {
             _timeDelay = timeDelay;
-            _view = view;
-            _view.DisplayView(_currentTime);
+            _processIncomeView.DisplayView(_currentTime);
         }
  
         private void Update()
@@ -28,7 +28,7 @@ namespace Controllers
                 //OnBarFilledEvent
             }
  
-            _view.DisplayView(ratio);
+            _processIncomeView.DisplayView(ratio);
         }
     }
 }

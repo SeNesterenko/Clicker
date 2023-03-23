@@ -32,7 +32,7 @@ namespace Controllers
 
         private void DisplayView()
         {
-            var state = _model.IsPurchased ? "Purchased" : _model.BoostIncome.ToString();
+            var state = _model.IsPurchased ? "Purchased" : _model.Price.ToString();
             _businessImprovementView.DisplayView(_model.Name, _model.BoostIncome.ToString(), state);
         }
     }

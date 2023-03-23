@@ -21,7 +21,7 @@ namespace Systems
             return _businessModels;
         }
 
-        public BusinessModel[] Inizialize()
+        public BusinessModel[] Initialize()
         {
             CreateBusinessModels();
             return _businessModels;
@@ -80,7 +80,7 @@ namespace Systems
         private void CountPriceLevelUp(LevelUpWithoutBalanceEvent eventData)
         {
             var businessModel = eventData.BusinessModel;
-            businessModel.Price = (businessModel.Level+1) * businessModel.Price;
+            businessModel.Price = (businessModel.Level + 1) * businessModel.Price;
         }
 
         public void Dispose()

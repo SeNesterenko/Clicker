@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 147652480277815279}
   - component: {fileID: 147652480277815278}
   - component: {fileID: 797679016461545484}
-  - component: {fileID: 5318071616271448828}
+  - component: {fileID: 5030096903448341936}
   m_Layer: 5
   m_Name: ProcessIncome
   m_TagString: Untagged
@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _slider: {fileID: 147652480277815278}
---- !u!114 &5318071616271448828
+--- !u!114 &5030096903448341936
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,9 +115,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 147652480277815276}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bef3d699b4814fb2b9a4e652b3d04623, type: 3}
+  m_Script: {fileID: 11500000, guid: da1d1e201c7b4a0cb4613a175822fafc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _processIncomeView: {fileID: 797679016461545484}
 --- !u!1 &147652480980205724
 GameObject:
   m_ObjectHideFlags: 0
@@ -993,12 +994,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _businessView: {fileID: 982342486932938445}
-  _processIncomeView: {fileID: 797679016461545484}
+  _processIncomeController: {fileID: 5030096903448341936}
   _businessImprovementControllers:
   - {fileID: 3997241537820705563}
   - {fileID: 4919053891241542772}
   _levelUpButton: {fileID: 963244736043944068}
-  _timer: {fileID: 5318071616271448828}
 --- !u!1 &2119521949145217833
 GameObject:
   m_ObjectHideFlags: 0
