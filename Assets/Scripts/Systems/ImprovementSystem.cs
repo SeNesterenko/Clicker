@@ -1,10 +1,11 @@
+using System;
 using Events;
 using SimpleEventBus.Disposables;
 using UnityEngine;
 
 namespace Systems
 {
-    public class ImprovementSystem : MonoBehaviour
+    public class ImprovementSystem : MonoBehaviour, IDisposable
     {
         private CompositeDisposable _subscriptions;
         
@@ -20,6 +21,11 @@ namespace Systems
         {
             Debug.Log(eventData.BusinessModel.Name);
             Debug.Log(eventData.PlayerBalanceModel.Balance);
+        }
+
+        public void Dispose()
+        {
+            _subscriptions?.Dispose();
         }
     }
 }
