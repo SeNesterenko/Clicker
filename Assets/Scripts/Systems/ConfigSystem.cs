@@ -21,10 +21,10 @@ namespace Systems
             return _businessModels;
         }
 
-        public IEnumerable<BusinessModel> Inizialize(IEnumerable<BusinessModel> businessModel)
+        public BusinessModel[] Inizialize()
         {
             CreateBusinessModels();
-            return businessModel;
+            return _businessModels;
         }
 
         private void Awake()

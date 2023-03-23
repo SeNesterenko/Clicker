@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     
     private void Start()
     {
-        var models = _configSystem.GetBusinesses();
+        var models = _configSystem.Inizialize();
         _businessSystem.Initialize(models);
         
         _incomeSystem.Initialize(100);
