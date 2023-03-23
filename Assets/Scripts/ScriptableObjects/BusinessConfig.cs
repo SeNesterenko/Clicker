@@ -6,8 +6,8 @@ namespace ScriptableObjects
     [CreateAssetMenu(fileName = "BusinessConfig", menuName = "BusinessConfig")]
     public class BusinessConfig : ScriptableObject
     {
-        public BusinessModel[] BusinessModels => _businessModel;
+        public ConfigBusinessModel[] BusinessModels => _businessModel;
         
-        [SerializeField] private BusinessModel[] _businessModel;
+        [SerializeField] private ConfigBusinessModel[] _businessModel;
     }
 }

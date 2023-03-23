@@ -1,23 +1,23 @@
-using System;
-using UnityEngine;
-
 namespace Models
 {
-    [Serializable]
     public class BusinessModel
     {
-        public string Name => _name;
-        public int Level => _level;
-        public float Income => _income;
-        public float IncomeDelay => _incomeDelay;
-        public float Price => _price;
-        public BusinessImprovementModel[] TypesImprovement => _typesImprovement;
+        public string Name { get; }
+        public float IncomeDelay { get; }
         
-        [SerializeField] private string _name;
-        [SerializeField] private int _level;
-        [SerializeField] private float _incomeDelay;
-        [SerializeField] private float _price;
-        [SerializeField] private float _income;
-        [SerializeField] private BusinessImprovementModel[] _typesImprovement;
+        public int Level { get; set; }
+        public float Income { get; set; }
+        public float Price { get; set; }
+        public BusinessImprovementModel[] BusinessImprovementModels;
+        
+        public BusinessModel(string name, float incomeDelay, int level, float income, float price, BusinessImprovementModel[] businessImprovementModels)
+        {
+            Name = name;
+            IncomeDelay = incomeDelay;
+            Level = level;
+            Income = income;
+            Price = price;
+            BusinessImprovementModels = businessImprovementModels;
+        }
     }
 }

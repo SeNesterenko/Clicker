@@ -1,19 +1,20 @@
-using System;
-using UnityEngine;
-
 namespace Models
 {
-    [Serializable]
     public class BusinessImprovementModel
     {
-        public bool IsPurchased => _isPurchased;
-        public string Name => _name;
-        public float Price => _price;
-        public float BoostIncome => _boostIncome;
+        public string Name { get; }
+        public float Price { get; }
+        public float BoostIncome { get; }
         
-        [SerializeField] private bool _isPurchased;
-        [SerializeField] private string _name;
-        [SerializeField] private float _price;
-        [SerializeField] private float _boostIncome;
+        public bool IsPurchased { get; set; }
+        
+        
+        public BusinessImprovementModel(string name, float price, float boostIncome, bool isPurchased)
+        {
+            Name = name;
+            Price = price;
+            BoostIncome = boostIncome;
+            IsPurchased = isPurchased;
+        }
     }
 }

@@ -12,7 +12,7 @@ namespace Views
 
         [SerializeField] private string _purchasedText = "Purchased";
 
-        public void Initialize(BusinessImprovementModel model)
+        public void Initialize(ConfigBusinessImprovementModel model)
         {
             _boostIncome.text = "Income: " + model.BoostIncome + "$";
             _name.text = model.Name;

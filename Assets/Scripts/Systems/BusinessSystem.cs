@@ -1,6 +1,5 @@
 using Controllers;
 using Models;
-using ScriptableObjects;
 using UnityEngine;
 
 namespace Systems
@@ -9,11 +8,11 @@ namespace Systems
     {
         [SerializeField] private Transform _parent;
         [SerializeField] private BusinessController _businessPrefab;
-        [SerializeField] private BusinessConfig _businessConfig;
+        [SerializeField] private ConfigSystem _configSystem;
 
         private void Start()
         {
-            var test = _businessConfig.BusinessModels;
+            var test = _configSystem.GetBusinesses();
             Initialize(test);
         }
 
