@@ -35,11 +35,12 @@ namespace Systems
             var playerModel = eventData.PlayerBalanceModel;
             var businessModel = eventData.BusinessModel;
 
-            if (playerModel.Balance >= businessModel.Price)
+            if (playerModel.Balance >= businessModel.CurrentPrice)
             {
                 businessModel.Level += 1;
-                playerModel.Balance -= businessModel.Price;
-                EventStreams.Game.Publish(new LevelPriceUpEvent(eventData.BusinessModel));
+                playerModel.Balance -= businessModel.CurrentPrice;
+                Debug.Log(businessModel.Level + "ImprovementSystem");
+                EventStreams.Game.Publish(new LevelPriceUpEvent(businessModel));
             }
            
         }

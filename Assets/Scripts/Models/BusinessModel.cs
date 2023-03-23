@@ -5,20 +5,22 @@ namespace Models
         public string Name { get; }
         public float IncomeDelay { get; }
         public float BaseIncome { get; }
+        public float BasePrice { get; }
         
-        public float Income { get; set; }
+        public float CurrentIncome { get; set; }
         public int Level { get; set; }
-        public float Price { get; set; }
+        public float CurrentPrice { get; set; }
         public readonly BusinessImprovementModel[] BusinessImprovementModels;
         
-        public BusinessModel(string name, float incomeDelay, int level, float baseIncome, float income, float price, BusinessImprovementModel[] businessImprovementModels)
+        public BusinessModel(string name, float incomeDelay, int level, float baseIncome, float currentIncome, float currentPrice, BusinessImprovementModel[] businessImprovementModels)
         {
             Name = name;
             IncomeDelay = incomeDelay;
             Level = level;
             BaseIncome = baseIncome;
-            Income = income;
-            Price = price;
+            CurrentIncome = currentIncome;
+            BasePrice = currentPrice;
+            CurrentPrice = currentPrice;
             BusinessImprovementModels = businessImprovementModels;
         }
     }

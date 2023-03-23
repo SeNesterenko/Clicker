@@ -36,7 +36,7 @@ namespace Controllers
 
         private void DisplayView()
         {
-            _businessView.DisplayView(_model.Name, _model.Level.ToString(), _model.BaseIncome.ToString(), _model.Price.ToString());
+            _businessView.DisplayView(_model.Name, _model.Level.ToString(), _model.BaseIncome.ToString(), _model.CurrentPrice.ToString());
         }
 
         private void Update()

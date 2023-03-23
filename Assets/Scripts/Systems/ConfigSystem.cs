@@ -15,24 +15,16 @@ namespace Systems
         
         private CompositeDisposable _subscriptions;
 
-        public BusinessModel[] GetBusinesses()
-        {
-            return _businessModels;
-        }
-
         public BusinessModel[] Initialize()
-        {
-            CreateBusinessModels();
-            return _businessModels;
-        }
-
-        private void Awake()
         {
             _subscriptions = new CompositeDisposable
             {
-                EventStreams.Game.Subscribe<LevelUpWithoutBalanceEvent>(CountPriceLevelUp),
+                EventStreams.Game.Subscribe<LevelPriceUpEvent>(CountPriceLevelUp),
                 EventStreams.Game.Subscribe<TimeIncomeEvent>(CountIncome)
             };
+            
+            CreateBusinessModels();
+            return _businessModels;
         }
 
         private void CreateBusinessModels()
@@ -79,16 +71,18 @@ namespace Systems
             var secondImproveBoost = businessModel.BusinessImprovementModels[1].IsPurchased ? 
                 businessModel.BusinessImprovementModels[1].BoostIncome : 0;
             
-            businessModel.Income = businessModel.Level * businessModel.BaseIncome * (1 + firstImproveBoost
+            businessModel.CurrentIncome = businessModel.Level * businessModel.BaseIncome * (1 + firstImproveBoost
                                                             + businessModel.BaseIncome / 100 * secondImproveBoost);
-            Debug.Log(businessModel.Income);
-            EventStreams.Game.Publish(new BalanceUpEvent(businessModel.Income));
+            EventStreams.Game.Publish(new BalanceUpEvent(businessModel.CurrentIncome));
         }
 
-        private void CountPriceLevelUp(LevelUpWithoutBalanceEvent eventData)
+        private void CountPriceLevelUp(LevelPriceUpEvent eventData)
         {
             var businessModel = eventData.BusinessModel;
-            businessModel.Price = (businessModel.Level + 1) * businessModel.Price;
+            Debug.Log(businessModel.CurrentPrice + "ConfigSystem");
+            Debug.Log(businessModel.Level + "ConfigSystem");
+            businessModel.CurrentPrice = (businessModel.Level + 1) * businessModel.BasePrice;
+            Debug.Log(businessModel.CurrentPrice + "ConfigSystem");
         }
 
         public void Dispose()
