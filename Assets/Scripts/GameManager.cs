@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
         var models = _configSystem.Initialize();
         _businessSystem.Initialize(models);
         
-        _incomeSystem.Initialize(100);
+        _incomeSystem.Initialize(150);
         _improvementSystem.Initialize();
     }
 }

@@ -20,16 +20,28 @@ namespace Systems
 
         private void ImproveBusiness(BusinessImproveWithBalanceEvent eventData)
         {
-            Debug.Log(eventData.BusinessImprovementModel.Name);
-            Debug.Log(eventData.PlayerBalanceModel.Balance);
+            var playerModel = eventData.PlayerBalanceModel;
+            var improvementBusiness = eventData.BusinessImprovementModel;
+
+            if (playerModel.Balance >= improvementBusiness.Price)
+            {
+                improvementBusiness.IsPurchased = true;
+                playerModel.Balance -= improvementBusiness.Price;
+            }
         }
         
         private void LevelUp(LevelUpWithBalanceEvent eventData)
         {
-            Debug.Log(eventData.BusinessModel.Name);
-            Debug.Log(eventData.PlayerBalanceModel.Balance);
-            Debug.Log(eventData.BusinessModel.Price);
-            
+            var playerModel = eventData.PlayerBalanceModel;
+            var businessModel = eventData.BusinessModel;
+
+            if (playerModel.Balance >= businessModel.Price)
+            {
+                businessModel.Level += 1;
+                playerModel.Balance -= businessModel.Price;
+                EventStreams.Game.Publish(new LevelPriceUpEvent(eventData.BusinessModel));
+            }
+           
         }
 
         public void Dispose()

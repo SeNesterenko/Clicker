@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using Events;
 using Models;
 using ScriptableObjects;
@@ -13,13 +12,7 @@ namespace Systems
         [SerializeField] private BusinessConfig _businessConfig;
 
         private BusinessModel[] _businessModels;
-        
         private CompositeDisposable _subscriptions;
-
-        public BusinessModel[] GetBusinesses()
-        {
-            return _businessModels;
-        }
 
         public BusinessModel[] Initialize()
         {
@@ -31,10 +24,10 @@ namespace Systems
         {
             _subscriptions = new CompositeDisposable
             {
-                EventStreams.Game.Subscribe<LevelUpWithoutBalanceEvent>(CountPriceLevelUp)
+                EventStreams.Game.Subscribe<LevelPriceUpEvent>(CountPriceLevelUp)
             };
         }
-
+        
         private void CreateBusinessModels()
         {
             _businessModels = new BusinessModel[_businessConfig.BusinessModels.Length];
@@ -77,7 +70,7 @@ namespace Systems
                                                             + businessModel.Income / 100 * businessModel.BusinessImprovementModels[1].Price);
         }
 
-        private void CountPriceLevelUp(LevelUpWithoutBalanceEvent eventData)
+        private void CountPriceLevelUp(LevelPriceUpEvent eventData)
         {
             var businessModel = eventData.BusinessModel;
             businessModel.Price = (businessModel.Level + 1) * businessModel.Price;
