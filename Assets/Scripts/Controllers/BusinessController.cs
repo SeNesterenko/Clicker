@@ -1,4 +1,4 @@
-using System;
+using Events;
 using Models;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,12 +15,18 @@ namespace Controllers
         [SerializeField] private Timer _timer;
 
         private BusinessModel _model;
-        
+
         public void Initialize(BusinessModel model)
         {
             _model = model;
             _timer.Initialize(model.IncomeDelay, _processIncomeView);
+            _levelUpButton.onClick.AddListener(OnLevelUp);
             DisplayView();
+        }
+
+        private void OnLevelUp()
+        {
+            EventStreams.Game.Publish(new LevelUpWithoutBalanceEvent(_model));
         }
 
         private void DisplayView()

@@ -14,8 +14,8 @@ namespace Views
 
         public void Initialize(BusinessImprovementModel model)
         {
-            _name.text = model.Name;
             _boostIncome.text = "Income: " + model.BoostIncome + "$";
+            _name.text = model.Name;
             _state.text = "Price: " + model.Price + "$";
         }
     }

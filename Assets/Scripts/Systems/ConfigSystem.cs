@@ -11,19 +11,21 @@ namespace Systems
     {
         [SerializeField] private BusinessConfig _businessConfig;
 
-        private readonly Dictionary<int, BusinessModel> _dictionaryBusinesses = new () ;
+        private BusinessModel[] _businessModels;
 
         private void Awake()
         {
+            _businessModels = new BusinessModel[_businessConfig.BusinessModels.Length];
+            
             for (var i = 0; i < _businessConfig.BusinessModels.Length; i++)
             {
-                _dictionaryBusinesses.Add(i,_businessConfig.BusinessModels[i]);
+                _businessModels[i] = _businessConfig.BusinessModels[i];
             }
         }
         
-        public BusinessModel GetBusinesses(int key)
+        public BusinessModel[] GetBusinesses(int key)
         {
-            return _dictionaryBusinesses[key];
+            return _businessModels;
         }
     }
 }
