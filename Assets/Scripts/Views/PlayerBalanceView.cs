@@ -5,6 +5,11 @@ namespace Views
 {
     public class PlayerBalanceView : MonoBehaviour
     {
-        [SerializeField] private TMP_Text _text;
+        [SerializeField] private TMP_Text _balance;
+
+        public void DisplayView(string balance)
+        {
+            _balance.text = balance + "$";
+        }
     }
 }
