@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 147652480277815279}
   - component: {fileID: 147652480277815278}
   - component: {fileID: 797679016461545484}
+  - component: {fileID: 5318071616271448828}
   m_Layer: 5
-  m_Name: Progress
+  m_Name: ProcessIncome
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105,6 +106,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _slider: {fileID: 147652480277815278}
+--- !u!114 &5318071616271448828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147652480277815276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bef3d699b4814fb2b9a4e652b3d04623, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &147652480980205724
 GameObject:
   m_ObjectHideFlags: 0
@@ -878,6 +891,7 @@ GameObject:
   - component: {fileID: 982342486932938420}
   - component: {fileID: 982342486932938419}
   - component: {fileID: 982342486932938445}
+  - component: {fileID: 1283648769120442096}
   m_Layer: 5
   m_Name: Business
   m_TagString: Untagged
@@ -962,15 +976,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 421c4a09c2384258bed51d7158c476b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: {fileID: 5503779502940139822}
+  _businessName: {fileID: 5503779502940139822}
   _level: {fileID: 307534810915245936}
   _income: {fileID: 2119521949145217835}
-  _businessImprovementPrefabs:
-  - {fileID: 8416538046435299469}
-  - {fileID: 574067875919157218}
-  _processIncomeView: {fileID: 797679016461545484}
   _levelUpPrice: {fileID: 8202392172523045453}
+--- !u!114 &1283648769120442096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982342486932938417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdc6ae2975fa42f9a05c686a8ab4171e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _businessView: {fileID: 982342486932938445}
+  _processIncomeView: {fileID: 797679016461545484}
+  _businessImprovementPrefabs: []
   _levelUpButton: {fileID: 963244736043944068}
+  _timer: {fileID: 5318071616271448828}
 --- !u!1 &2119521949145217833
 GameObject:
   m_ObjectHideFlags: 0
@@ -1699,17 +1725,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1371357156885208616, guid: a32a0bf3b5a2a224f9e1c3e3713600c4, type: 3}
   m_PrefabInstance: {fileID: 1513057332178372918}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &574067875919157218 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1371357156885208788, guid: a32a0bf3b5a2a224f9e1c3e3713600c4, type: 3}
-  m_PrefabInstance: {fileID: 1513057332178372918}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbddd139aac14d0d878190ae5d705666, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &7477530997987413593
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1814,14 +1829,3 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1371357156885208616, guid: a32a0bf3b5a2a224f9e1c3e3713600c4, type: 3}
   m_PrefabInstance: {fileID: 7477530997987413593}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8416538046435299469 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1371357156885208788, guid: a32a0bf3b5a2a224f9e1c3e3713600c4, type: 3}
-  m_PrefabInstance: {fileID: 7477530997987413593}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbddd139aac14d0d878190ae5d705666, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
