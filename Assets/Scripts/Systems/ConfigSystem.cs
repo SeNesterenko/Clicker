@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Models;
 using ScriptableObjects;
@@ -10,11 +9,8 @@ namespace Systems
     //их хранение и предоставление доступа для других систем.
     public class ConfigSystem : MonoBehaviour
     {
-
         [SerializeField] private BusinessConfig _businessConfig;
 
-        [SerializeField] private BusinessModel[] _businessModels;
-        
         private readonly Dictionary<int, BusinessModel> _dictionaryBusinesses = new () ;
 
         private void Awake()
@@ -25,9 +21,9 @@ namespace Systems
             }
         }
         
-        public IReadOnlyDictionary<int,BusinessModel> GetDictionaryBusinesses()
+        public BusinessModel GetBusinesses(int key)
         {
-            return _dictionaryBusinesses;
+            return _dictionaryBusinesses[key];
         }
     }
 }
