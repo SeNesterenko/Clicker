@@ -28,6 +28,8 @@ namespace Systems
         {
             Debug.Log(eventData.BusinessModel.Name);
             Debug.Log(eventData.PlayerBalanceModel.Balance);
+            Debug.Log(eventData.BusinessModel.Price);
+            
         }
 
         public void Dispose()
