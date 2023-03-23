@@ -19,10 +19,16 @@ namespace Systems
             _subscriptions = new CompositeDisposable
             {
                 EventStreams.Game.Subscribe<LevelUpWithoutBalanceEvent>(AddBalanceToEventContext),
-                EventStreams.Game.Subscribe<BusinessImproveWithoutBalanceEvent>(AddBalanceToEventContext)
+                EventStreams.Game.Subscribe<BusinessImproveWithoutBalanceEvent>(AddBalanceToEventContext),
+                EventStreams.Game.Subscribe<BalanceUpEvent>(PlayerBalanceUp)
             };
         }
 
+        private void PlayerBalanceUp(BalanceUpEvent eventData)
+        {
+            _playerBalanceController.GetPlayerModel().Balance += eventData.BalanceUp;
+        }
+        
         private void AddBalanceToEventContext(BusinessImproveWithoutBalanceEvent eventData)
         {
             EventStreams.Game.Publish(new BusinessImproveWithBalanceEvent(eventData.BusinessImprovementModel, _playerBalanceController.GetPlayerModel()));

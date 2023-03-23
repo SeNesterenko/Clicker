@@ -18,7 +18,7 @@ namespace Controllers
         public void Initialize(BusinessModel model)
         {
             _model = model;
-            _processIncomeController.Initialize(model.IncomeDelay);
+            _processIncomeController.Initialize(model);
             
             for (var i = 0; i < _businessImprovementControllers.Length; i++)
             {
@@ -36,7 +36,7 @@ namespace Controllers
 
         private void DisplayView()
         {
-            _businessView.DisplayView(_model.Name, _model.Level.ToString(), _model.Income.ToString(), _model.Price.ToString());
+            _businessView.DisplayView(_model.Name, _model.Level.ToString(), _model.BaseIncome.ToString(), _model.Price.ToString());
         }
 
         private void Update()
