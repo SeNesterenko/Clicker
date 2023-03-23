@@ -1,6 +1,6 @@
 using System;
+using Controllers;
 using Events;
-using Models;
 using SimpleEventBus.Disposables;
 using UnityEngine;
 
@@ -8,15 +8,13 @@ namespace Systems
 {
     public class IncomeSystem : MonoBehaviour, IDisposable
     {
-        private PlayerBalanceModel _playerBalanceModel;
+        [SerializeField] private PlayerBalanceController _playerBalanceController;
+        
         private CompositeDisposable _subscriptions;
 
         public void Initialize(float startBalance)
         {
-            _playerBalanceModel = new PlayerBalanceModel
-            {
-                Balance = startBalance
-            };
+            _playerBalanceController.Initialize(startBalance);
             
             _subscriptions = new CompositeDisposable
             {
@@ -27,12 +25,12 @@ namespace Systems
 
         private void AddBalanceToEventContext(BusinessImproveWithoutBalanceEvent eventData)
         {
-            EventStreams.Game.Publish(new BusinessImproveWithBalanceEvent(eventData.BusinessImprovementModel, _playerBalanceModel));
+            EventStreams.Game.Publish(new BusinessImproveWithBalanceEvent(eventData.BusinessImprovementModel, _playerBalanceController.GetPlayerModel()));
         }
         
         private void AddBalanceToEventContext(LevelUpWithoutBalanceEvent eventData)
         {
-            EventStreams.Game.Publish(new LevelUpWithBalanceEvent(eventData.BusinessModel, _playerBalanceModel));
+            EventStreams.Game.Publish(new LevelUpWithBalanceEvent(eventData.BusinessModel, _playerBalanceController.GetPlayerModel()));
         }
         
         public void Dispose()

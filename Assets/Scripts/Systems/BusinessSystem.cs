@@ -10,12 +10,6 @@ namespace Systems
         [SerializeField] private BusinessController _businessPrefab;
         [SerializeField] private ConfigSystem _configSystem;
 
-        private void Start()
-        {
-            var test = _configSystem.GetBusinesses();
-            Initialize(test);
-        }
-
         public void Initialize(BusinessModel[] businessModels)
         {
             foreach (var model in businessModels)
