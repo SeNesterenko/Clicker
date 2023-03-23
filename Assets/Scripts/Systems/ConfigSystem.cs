@@ -20,7 +20,7 @@ namespace Systems
             _subscriptions = new CompositeDisposable
             {
                 EventStreams.Game.Subscribe<LevelPriceUpEvent>(CountPriceLevelUp),
-                EventStreams.Game.Subscribe<TimeIncomeEvent>(CountIncome)
+                EventStreams.Game.Subscribe<TimeIncomeEvent>(DistributeIncome)
             };
             
             CreateBusinessModels();
@@ -62,10 +62,15 @@ namespace Systems
             return businessImproves;
         }
 
-        private void CountIncome(TimeIncomeEvent eventData)
+        private void DistributeIncome(TimeIncomeEvent eventData)
         {
             var businessModel = eventData.BusinessModel;
-            
+            CountIncome(businessModel);
+            EventStreams.Game.Publish(new BalanceUpEvent(businessModel.CurrentIncome));
+        }
+        
+        private void CountIncome(BusinessModel businessModel)
+        {
             var firstImproveBoost = businessModel.BusinessImprovementModels[0].IsPurchased ?
                 businessModel.BusinessImprovementModels[0].BoostIncome : 0;
             var secondImproveBoost = businessModel.BusinessImprovementModels[1].IsPurchased ? 
@@ -73,16 +78,13 @@ namespace Systems
             
             businessModel.CurrentIncome = businessModel.Level * businessModel.BaseIncome * (1 + firstImproveBoost
                                                             + businessModel.BaseIncome / 100 * secondImproveBoost);
-            EventStreams.Game.Publish(new BalanceUpEvent(businessModel.CurrentIncome));
         }
 
         private void CountPriceLevelUp(LevelPriceUpEvent eventData)
         {
             var businessModel = eventData.BusinessModel;
-            Debug.Log(businessModel.CurrentPrice + "ConfigSystem");
-            Debug.Log(businessModel.Level + "ConfigSystem");
             businessModel.CurrentPrice = (businessModel.Level + 1) * businessModel.BasePrice;
-            Debug.Log(businessModel.CurrentPrice + "ConfigSystem");
+            CountIncome(businessModel);
         }
 
         public void Dispose()

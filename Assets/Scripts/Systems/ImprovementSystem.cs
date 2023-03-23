@@ -7,6 +7,8 @@ namespace Systems
 {
     public class ImprovementSystem : MonoBehaviour, IDisposable
     {
+        [SerializeField] private int _countOfLevels = 5;
+        
         private CompositeDisposable _subscriptions;
         
         public void Initialize()
@@ -35,11 +37,10 @@ namespace Systems
             var playerModel = eventData.PlayerBalanceModel;
             var businessModel = eventData.BusinessModel;
 
-            if (playerModel.Balance >= businessModel.CurrentPrice)
+            if (playerModel.Balance >= businessModel.CurrentPrice && businessModel.Level < _countOfLevels)
             {
                 businessModel.Level += 1;
                 playerModel.Balance -= businessModel.CurrentPrice;
-                Debug.Log(businessModel.Level + "ImprovementSystem");
                 EventStreams.Game.Publish(new LevelPriceUpEvent(businessModel));
             }
            
