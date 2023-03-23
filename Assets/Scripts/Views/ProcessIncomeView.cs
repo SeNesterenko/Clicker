@@ -9,7 +9,7 @@ namespace Views
         
         private Timer _timer;
 
-        public void Initialize()
+        public void DisplayView(float currentTime)
         {
             
         }
