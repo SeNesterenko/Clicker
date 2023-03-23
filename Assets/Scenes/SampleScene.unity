@@ -565,6 +565,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _incomeSystem: {fileID: 944254147}
   _improvementSystem: {fileID: 1772254036}
+  _saveSystem: {fileID: 1607543318}
+  _configSystem: {fileID: 1120523865}
+  _businessSystem: {fileID: 1922333235}
 --- !u!1 &756127714
 GameObject:
   m_ObjectHideFlags: 0

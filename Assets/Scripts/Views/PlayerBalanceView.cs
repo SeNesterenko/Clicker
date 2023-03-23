@@ -9,7 +9,7 @@ namespace Views
 
         public void DisplayView(string balance)
         {
-            _balance.text = balance + "$";
+            _balance.text = "Balance: " + balance + "$";
         }
     }
 }
