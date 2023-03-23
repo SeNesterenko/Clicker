@@ -1,23 +1,38 @@
+using System;
+using System.Collections.Generic;
+using Events;
 using Models;
 using ScriptableObjects;
+using SimpleEventBus.Disposables;
 using UnityEngine;
 
 namespace Systems
 {
-    public class ConfigSystem : MonoBehaviour
+    public class ConfigSystem : MonoBehaviour,IDisposable
     {
         [SerializeField] private BusinessConfig _businessConfig;
 
         private BusinessModel[] _businessModels;
+        
+        private CompositeDisposable _subscriptions;
 
         public BusinessModel[] GetBusinesses()
         {
             return _businessModels;
         }
-        
-        private void Awake()
+
+        public IEnumerable<BusinessModel> Inizialize(IEnumerable<BusinessModel> businessModel)
         {
             CreateBusinessModels();
+            return businessModel;
+        }
+
+        private void Awake()
+        {
+            _subscriptions = new CompositeDisposable
+            {
+                EventStreams.Game.Subscribe<LevelUpWithoutBalanceEvent>(CountPriceLevelUp)
+            };
         }
 
         private void CreateBusinessModels()
@@ -38,21 +53,39 @@ namespace Systems
             }
         }
 
-        private BusinessImprovementModel[] CreateBusinessImproves(int i)
+        private BusinessImprovementModel[] CreateBusinessImproves(int index)
         {
-            var businessImproves = new BusinessImprovementModel[_businessConfig.BusinessModels[i].TypesImprovement.Length];
+            var businessImproves = new BusinessImprovementModel[_businessConfig.BusinessModels[index].TypesImprovement.Length];
             for (var j = 0; j < businessImproves.Length; j++)
             {
-                var businessImproveName = _businessConfig.BusinessModels[i].TypesImprovement[j].Name;
-                var businessImprovePrice = _businessConfig.BusinessModels[i].TypesImprovement[j].Price;
-                var businessImproveBoostIncome = _businessConfig.BusinessModels[i].TypesImprovement[j].BoostIncome;
-                var businessImproveIsPurchased = _businessConfig.BusinessModels[i].TypesImprovement[j].IsPurchased;
+                var businessImproveName = _businessConfig.BusinessModels[index].TypesImprovement[j].Name;
+                var businessImprovePrice = _businessConfig.BusinessModels[index].TypesImprovement[j].Price;
+                var businessImproveBoostIncome = _businessConfig.BusinessModels[index].TypesImprovement[j].BoostIncome;
+                var businessImproveIsPurchased = _businessConfig.BusinessModels[index].TypesImprovement[j].IsPurchased;
 
                 businessImproves[j] = new BusinessImprovementModel(businessImproveName, businessImprovePrice,
                     businessImproveBoostIncome, businessImproveIsPurchased);
             }
 
             return businessImproves;
+        }
+
+        public void CountIncome(BusinessModel businessModel)
+        {
+
+            businessModel.Income = businessModel.Level * (1 + businessModel.BusinessImprovementModels[0].Price
+                                                            + businessModel.Income / 100 * businessModel.BusinessImprovementModels[1].Price);
+        }
+
+        private void CountPriceLevelUp(LevelUpWithoutBalanceEvent eventData)
+        {
+            var businessModel = eventData.BusinessModel;
+            businessModel.Price = (businessModel.Level+1) * businessModel.Price;
+        }
+
+        public void Dispose()
+        {
+            _subscriptions?.Dispose();
         }
     }
 }
