@@ -721,6 +721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3c58c665e5fbe94698e4c552328dbdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerBalanceController: {fileID: 1934317622}
 --- !u!1 &1120523863
 GameObject:
   m_ObjectHideFlags: 0
@@ -1299,7 +1300,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 216225170ef84ed89e27f325133d3b58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 2109578715}
+  _balance: {fileID: 2109578715}
+--- !u!114 &1934317622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1934317615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97d11265420f40f0a43012426ec28e14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerBalanceView: {fileID: 1934317619}
 --- !u!114 &2109578715 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6769336353473583734, guid: 88135522bdde04eccadbdbb0838faa7f, type: 3}
