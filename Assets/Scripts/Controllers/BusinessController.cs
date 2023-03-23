@@ -10,7 +10,7 @@ namespace Controllers
     {
         [SerializeField] private BusinessView _businessView;
         [SerializeField] private ProcessIncomeView _processIncomeView;
-        [SerializeField] private BusinessImprovementView[] _businessImprovementPrefabs;
+        [SerializeField] private BusinessImprovementController[] _businessImprovementControllers;
         [SerializeField] private Button _levelUpButton;
         [SerializeField] private Timer _timer;
 
@@ -20,6 +20,12 @@ namespace Controllers
         {
             _model = model;
             _timer.Initialize(model.IncomeDelay, _processIncomeView);
+            
+            for (var i = 0; i < _businessImprovementControllers.Length; i++)
+            {
+                _businessImprovementControllers[i].Initialize(_model.BusinessImprovementModels[i]);
+            }
+            
             _levelUpButton.onClick.AddListener(OnLevelUp);
             DisplayView();
         }

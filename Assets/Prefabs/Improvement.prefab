@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 1371357156885208618}
   - component: {fileID: 1371357156885208617}
   - component: {fileID: 1371357156885208788}
+  - component: {fileID: 5817675259066600770}
   m_Layer: 5
-  m_Name: Upgrade
+  m_Name: Improvement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -137,9 +138,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbddd139aac14d0d878190ae5d705666, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: {fileID: 1371357158907086921}
+  _improvementName: {fileID: 1371357158907086921}
   _boostIncome: {fileID: 1590130115531577288}
   _state: {fileID: 1590130115966363508}
+--- !u!114 &5817675259066600770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1371357156885208631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9428c4d75654070b3db4ee41b89c2ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _businessImprovementView: {fileID: 1371357156885208788}
+  _businessImproveButton: {fileID: 1371357156885208617}
 --- !u!1 &1371357158907086935
 GameObject:
   m_ObjectHideFlags: 0
