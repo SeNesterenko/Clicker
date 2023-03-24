@@ -1,3 +1,4 @@
+using System;
 using Events;
 using Models;
 using UnityEngine;
@@ -12,9 +13,11 @@ namespace Controllers
         [SerializeField] private Button _businessImproveButton;
         
         private BusinessImprovementModel _model;
+        private Action _incomeUpdate;
         
-        public void Initialize(BusinessImprovementModel model)
+        public void Initialize(BusinessImprovementModel model, Action incomeUpdate)
         {
+            _incomeUpdate = incomeUpdate;
             _model = model;
             _businessImproveButton.onClick.AddListener(OnImproveBusiness);
             DisplayView();
@@ -23,6 +26,7 @@ namespace Controllers
         private void OnImproveBusiness()
         {
             EventStreams.Game.Publish(new BusinessImproveWithoutBalanceEvent(_model));
+            _incomeUpdate?.Invoke();
         }
 
         private void Update()

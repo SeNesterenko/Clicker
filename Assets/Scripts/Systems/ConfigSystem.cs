@@ -19,7 +19,8 @@ namespace Systems
             _subscriptions = new CompositeDisposable
             {
                 EventStreams.Game.Subscribe<LevelPriceUpEvent>(CountPriceLevelUp),
-                EventStreams.Game.Subscribe<TimeIncomeEvent>(DistributeIncome)
+                EventStreams.Game.Subscribe<TimeIncomeEvent>(DistributeIncome),
+                EventStreams.Game.Subscribe<IncomeUpdateEvent>(InitializeUpdateIncome)
             };
             
             CreateBusinessModels();
@@ -61,6 +62,11 @@ namespace Systems
             return businessImproves;
         }
 
+        private void InitializeUpdateIncome(IncomeUpdateEvent eventData)
+        {
+            CountIncome(eventData.BusinessModel);
+        }
+        
         private void DistributeIncome(TimeIncomeEvent eventData)
         {
             var businessModel = eventData.BusinessModel;

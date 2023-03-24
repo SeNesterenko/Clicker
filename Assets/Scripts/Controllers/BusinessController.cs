@@ -22,11 +22,16 @@ namespace Controllers
             
             for (var i = 0; i < _businessImprovementControllers.Length; i++)
             {
-                _businessImprovementControllers[i].Initialize(_model.BusinessImprovementModels[i]);
+                _businessImprovementControllers[i].Initialize(_model.BusinessImprovementModels[i], OnIncomeUpdate);
             }
             
             _levelUpButton.onClick.AddListener(OnLevelUp);
             DisplayView();
+        }
+
+        private void OnIncomeUpdate()
+        {
+            EventStreams.Game.Publish(new IncomeUpdateEvent(_model));
         }
 
         private void OnLevelUp()
