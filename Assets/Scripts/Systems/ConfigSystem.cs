@@ -76,7 +76,7 @@ namespace Systems
             var secondImproveBoost = businessModel.BusinessImprovementModels[1].IsPurchased ? 
                 businessModel.BusinessImprovementModels[1].BoostIncome : 0;
             
-            businessModel.CurrentIncome = businessModel.Level * businessModel.BaseIncome * (1 + firstImproveBoost
+            businessModel.CurrentIncome = businessModel.Level * businessModel.BaseIncome + (1 + firstImproveBoost
                                                             + businessModel.BaseIncome / 100 * secondImproveBoost);
         }
 

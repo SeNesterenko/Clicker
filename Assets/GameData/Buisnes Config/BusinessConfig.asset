@@ -83,3 +83,4 @@ MonoBehaviour:
       _name: Employee
       _price: 1000000
       _boostIncome: 200
+  _startPlayerBalance: 0
