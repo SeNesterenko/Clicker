@@ -77,7 +77,7 @@ namespace Systems
                 businessModel.BusinessImprovementModels[1].BoostIncome : 0;
             
             businessModel.CurrentIncome = businessModel.Level * businessModel.BaseIncome + (1 + firstImproveBoost
-                                                            + businessModel.BaseIncome / 100 * secondImproveBoost);
+                                                            + secondImproveBoost);
         }
 
         private void CountPriceLevelUp(LevelPriceUpEvent eventData)
