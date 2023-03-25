@@ -16,15 +16,18 @@ namespace Systems
 
         public BusinessModel[] Initialize()
         {
+            CreateBusinessModels();
+            return _businessModels;
+        }
+
+        private void Awake()
+        {
             _subscriptions = new CompositeDisposable
             {
                 EventStreams.Game.Subscribe<LevelPriceUpEvent>(CountPriceLevelUp),
                 EventStreams.Game.Subscribe<TimeIncomeEvent>(DistributeIncome),
                 EventStreams.Game.Subscribe<IncomeUpdateEvent>(InitializeUpdateIncome)
             };
-            
-            CreateBusinessModels();
-            return _businessModels;
         }
 
         private void CreateBusinessModels()

@@ -1,16 +1,15 @@
-
 using System.IO;
-using UnityEngine;
 using Models;
 using Newtonsoft.Json;
+using UnityEngine;
 
-namespace Systems
+namespace Systems.SaveSystem
 {
 
     public class JSONSaveSystem : ISaveSystem
     {
         private readonly string _filePath;
-        private JsonSerializer _serializer;
+        private readonly JsonSerializer _serializer;
 
         public JSONSaveSystem()
         {
@@ -18,37 +17,24 @@ namespace Systems
             _serializer = new JsonSerializer();
         }
 
-        public async void Save(BusinessModel[] saveDatas)
+        public void Save(SaveData saveData)
         {
-            foreach (var data in saveDatas)
-            {
-                using (StreamWriter sw = new StreamWriter(_filePath))
-                {
-                    using (JsonWriter writer = new JsonTextWriter(sw))
-                    {
-                        _serializer.Serialize(writer, data);
-                    }
-                }
-            }
-            
-            Debug.Log("файл сохранения успешно записан");
+            using var sw = new StreamWriter(_filePath);
+            using JsonWriter writer = new JsonTextWriter(sw);
+            _serializer.Serialize(writer, saveData);
         }
 
-        public BusinessModel[] Load()
+        public SaveData Load()
         {
             if (!File.Exists(_filePath))
-                return null;
-
-
-            BusinessModel[] models;
-            using (StreamReader sr = new StreamReader(_filePath))
-            using (JsonReader reader = new JsonTextReader(sr))
             {
-                models = _serializer.Deserialize<BusinessModel[]>(reader);             
+                return null;
             }
-            
-            
-            Debug.Log("файл сохранения успешно загружен");
+
+            using var sr = new StreamReader(_filePath);
+            using JsonReader reader = new JsonTextReader(sr);
+            var models = _serializer.Deserialize<SaveData>(reader);
+
             return models;
         }
     }

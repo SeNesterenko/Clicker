@@ -1,10 +1,11 @@
-using UnityEngine;
-using Systems;
 using Models;
 
-public interface ISaveSystem
+namespace Systems.SaveSystem
 {
-    void Save(BusinessModel[] saveDatas);
+    public interface ISaveSystem
+    {
+        void Save(SaveData saveData);
 
-    BusinessModel[] Load();
+        SaveData Load();
+    }
 }

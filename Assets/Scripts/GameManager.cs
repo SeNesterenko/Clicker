@@ -1,7 +1,6 @@
-using System.Threading;
-using System.Threading.Tasks;
 using Systems;
 using Models;
+using Systems.SaveSystem;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -10,27 +9,38 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ImprovementSystem _improvementSystem;
     [SerializeField] private ConfigSystem _configSystem;
     [SerializeField] private BusinessSystem _businessSystem;
+    
     private ISaveSystem _saveSystem;
     private BusinessModel[] _models;
     
     private void Start()
     {
         _saveSystem = new JSONSaveSystem();
-        var models = _saveSystem.Load();
+        var saveData = _saveSystem.Load();
+        var models = saveData.BusinessModels;
+        var balance = saveData.Balance;
 
-        if(models == null || models.Length == 0)
+        if (models == null)
+        {
             models = _configSystem.Initialize();
+        }
 
         _models = models;
         
         _businessSystem.Initialize(models);
         
-        _incomeSystem.Initialize(0);
+        _incomeSystem.Initialize(balance);
         _improvementSystem.Initialize();
+    }
+
+    private void OnDestroy()
+    {
+        OnGameQuit();
     }
 
     private void OnGameQuit()
     {
-        _saveSystem.Save(_models);
+        var saveData = new SaveData(_incomeSystem.GetPlayerBalance(), _models);
+        _saveSystem.Save(saveData);
     }
 }

@@ -24,6 +24,11 @@ namespace Systems
             };
         }
 
+        public float GetPlayerBalance()
+        {
+            return _playerBalanceController.GetPlayerModel().Balance;
+        }
+
         private void PlayerBalanceUp(BalanceUpEvent eventData)
         {
             _playerBalanceController.GetPlayerModel().Balance += eventData.BalanceUp;

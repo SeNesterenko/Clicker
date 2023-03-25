@@ -25,7 +25,7 @@ MonoBehaviour:
       _boostIncome: 50
     - _isPurchased: 0
       _name: Brokilon Ingredients
-      _price: 500
+      _price: 150
       _boostIncome: 50
   - _name: Horse Sharing
     _level: 0
@@ -39,8 +39,8 @@ MonoBehaviour:
       _boostIncome: 1200
     - _isPurchased: 0
       _name: Price Increase
-      _price: 5000
-      _boostIncome: 100
+      _price: 3600
+      _boostIncome: 1200
   - _name: Barbershop
     _level: 0
     _incomeDelay: 10
@@ -53,8 +53,8 @@ MonoBehaviour:
       _boostIncome: 6000
     - _isPurchased: 0
       _name: Staff Development
-      _price: 10000
-      _boostIncome: 100
+      _price: 18000
+      _boostIncome: 6000
   - _name: Restaurant
     _level: 0
     _incomeDelay: 17
@@ -67,8 +67,8 @@ MonoBehaviour:
       _boostIncome: 15000
     - _isPurchased: 0
       _name: Advertising
-      _price: 50000
-      _boostIncome: 100
+      _price: 45000
+      _boostIncome: 15000
   - _name: Bank
     _level: 0
     _incomeDelay: 30
@@ -81,6 +81,5 @@ MonoBehaviour:
       _boostIncome: 100000
     - _isPurchased: 0
       _name: Employee
-      _price: 1000000
-      _boostIncome: 200
-  _startPlayerBalance: 0
+      _price: 300000
+      _boostIncome: 100000
