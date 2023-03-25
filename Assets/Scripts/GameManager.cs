@@ -1,3 +1,4 @@
+using System;
 using Systems;
 using Models;
 using Systems.SaveSystem;
@@ -9,6 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ImprovementSystem _improvementSystem;
     [SerializeField] private ConfigSystem _configSystem;
     [SerializeField] private BusinessSystem _businessSystem;
+    [SerializeField] private CanvasGroupSystem _canvasGroupSystem;
     
     private ISaveSystem _saveSystem;
     private BusinessModel[] _models;
@@ -31,6 +33,14 @@ public class GameManager : MonoBehaviour
        
         _businessSystem.Initialize(_models);
         _improvementSystem.Initialize();
+    }
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            _canvasGroupSystem.MenuGame();
+        }
     }
 
     private void OnDestroy()
