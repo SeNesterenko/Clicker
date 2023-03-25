@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 namespace Systems
@@ -5,62 +6,38 @@ namespace Systems
     public class CanvasGroupSystem : MonoBehaviour
     {
         [SerializeField] private CanvasGroup _canvasGroup;
+        [SerializeField] private CanvasGroup _gameCanvasGroup;
         
         private bool _canvasVisible;
         private bool _fadeIn;
         private bool _fadeOut;
-
-        private void Update()
-        {
-            FadeIn(_fadeIn);
-            FadeOut(_fadeOut);
-        }
-
-
+        
         public void MenuGame()
         {
             if (!_canvasVisible)
             {
-                _fadeIn = true;
+                FadeIn();
                 _canvasVisible = true;
                 
             }
             else
             {
-                _fadeOut = true;
+                FadeOut();
                 _canvasVisible = false;
             }
             
         }
 
-        private void FadeIn(bool fadeIn)
+        private void FadeIn()
         {
-            if (fadeIn)
-            {
-                if (_canvasGroup.alpha < 1)
-                {
-                    _canvasGroup.alpha += Time.deltaTime;
-                    if (_canvasGroup.alpha >= 1)
-                    {
-                        _fadeIn = false;
-                    }
-                }
-            }
+            _canvasGroup.DOFade(1f, 1f);
+            _gameCanvasGroup.DOFade(0f,0.5f);
         }
 
-        private void FadeOut(bool fadeOut)
+        private void FadeOut()
         {
-            if (fadeOut)
-            {
-                if (_canvasGroup.alpha > 0)
-                {
-                    _canvasGroup.alpha -= Time.deltaTime;
-                    if (_canvasGroup.alpha <= 0)
-                    {
-                        _fadeOut = false;
-                    }
-                }
-            }
+            _canvasGroup.DOFade(0, 1f);
+            _gameCanvasGroup.DOFade(1f,0.5f);
         }
     } 
 }
