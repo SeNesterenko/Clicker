@@ -10,7 +10,7 @@ namespace Views
         [SerializeField] private TMP_Text _income;
         [SerializeField] private TMP_Text _levelUpPrice;
 
-        public void DisplayView(string businessName, string level, string income, string levelPrice)
+        public void Display(string businessName, string level, string income, string levelPrice)
         {
             _businessName.text = businessName;
             _level.text = "Level " + level;

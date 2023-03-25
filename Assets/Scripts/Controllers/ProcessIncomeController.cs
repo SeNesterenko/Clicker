@@ -17,7 +17,7 @@ namespace Controllers
             _timeDelay = businessModel.IncomeDelay;
             _businessModel = businessModel;
             
-            _processIncomeView.DisplayView(_currentTime);
+            _processIncomeView.Display(_currentTime);
         }
  
         private void Update()
@@ -41,7 +41,7 @@ namespace Controllers
                 EventStreams.Game.Publish(new TimeIncomeEvent(_businessModel));
             }
 
-            _processIncomeView.DisplayView(ratio);
+            _processIncomeView.Display(ratio);
         }
     }
 }

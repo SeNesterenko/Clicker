@@ -7,7 +7,7 @@ namespace Views
     {
         [SerializeField] private TMP_Text _balance;
 
-        public void DisplayView(string balance)
+        public void Display(string balance)
         {
             _balance.text = "Balance: " + balance + "$";
         }

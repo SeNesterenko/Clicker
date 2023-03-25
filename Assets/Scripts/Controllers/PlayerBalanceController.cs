@@ -26,7 +26,7 @@ namespace Controllers
 
         private void DisplayView()
         {
-            _playerBalanceView.DisplayView(_model.Balance.ToString());
+            _playerBalanceView.Display(_model.Balance.ToString());
         }
 
         private void Update()
