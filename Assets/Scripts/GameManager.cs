@@ -27,9 +27,6 @@ public class GameManager : MonoBehaviour
         
         _incomeSystem.Initialize(0);
         _improvementSystem.Initialize();
-
-        Task.Delay(10000);
-        OnGameQuit();
     }
 
     private void OnGameQuit()
