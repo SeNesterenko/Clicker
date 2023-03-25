@@ -17,16 +17,19 @@ public class GameManager : MonoBehaviour
     {
         _saveSystem = new JSONSaveSystem();
         var saveData = _saveSystem.Load();
-        _models = saveData.BusinessModels;
-        var balance = saveData.Balance;
-
-        if (_models == null)
+        
+        if (saveData == null)
         {
+            _incomeSystem.Initialize(0);
             _models = _configSystem.Initialize();
         }
-
+        else
+        {
+            _models = saveData.BusinessModels;
+            _incomeSystem.Initialize(saveData.Balance);
+        }
+       
         _businessSystem.Initialize(_models);
-        _incomeSystem.Initialize(balance);
         _improvementSystem.Initialize();
     }
 
