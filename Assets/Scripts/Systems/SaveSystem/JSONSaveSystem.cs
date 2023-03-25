@@ -33,9 +33,9 @@ namespace Systems.SaveSystem
 
             using var sr = new StreamReader(_filePath);
             using JsonReader reader = new JsonTextReader(sr);
-            var models = _serializer.Deserialize<SaveData>(reader);
+            var saveData = _serializer.Deserialize<SaveData>(reader);
 
-            return models;
+            return saveData;
         }
     }
 }
