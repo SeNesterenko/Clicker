@@ -14,11 +14,13 @@ public class GameManager : MonoBehaviour
     
     private ISaveSystem _saveSystem;
     private BusinessModel[] _models;
-    
+
     private void Start()
     {
-        _saveSystem = new JSONSaveSystem();
+        InitializeSystems();
+
         var saveData = _saveSystem.Load();
+        
         
         if (saveData == null)
         {
@@ -48,6 +50,11 @@ public class GameManager : MonoBehaviour
         OnGameQuit();
     }
 
+    private void InitializeSystems()
+    {
+        _saveSystem = new JSONSaveSystem();
+    }
+    
     private void OnGameQuit()
     {
         var saveData = new SaveData(_incomeSystem.GetPlayerBalance(), _models);

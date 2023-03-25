@@ -1518,6 +1518,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: da5db72ec48e840799f4a20440277192, type: 3}
+    - target: {fileID: 6769336352883705587, guid: 88135522bdde04eccadbdbb0838faa7f, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6769336353473583734, guid: 88135522bdde04eccadbdbb0838faa7f, type: 3}
       propertyPath: m_text
       value: 'Balance: 150$'
@@ -2429,7 +2433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _parent: {fileID: 522635754}
-  _businessPrefab: {fileID: 1283648769120442096, guid: 8059d175180705f45a9715c27d50d22d, type: 3}
+  _businessControllerPrefab: {fileID: 1283648769120442096, guid: 8059d175180705f45a9715c27d50d22d, type: 3}
 --- !u!4 &1922333236
 Transform:
   m_ObjectHideFlags: 0

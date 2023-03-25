@@ -9,7 +9,8 @@ namespace Views
         [SerializeField] private TMP_Text _boostIncome;
         [SerializeField] private TMP_Text _state;
 
-        public void DisplayView(string improvementName, string boostIncome, string state)
+
+        public void Display(string improvementName, string boostIncome, string state)
         {
             _boostIncome.text = "Income: " + boostIncome + "$";
             _improvementName.text = improvementName;

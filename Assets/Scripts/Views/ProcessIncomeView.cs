@@ -7,7 +7,7 @@ namespace Views
     {
         [SerializeField] private Slider _slider;
 
-        public void DisplayView(float currentTime)
+        public void Display(float currentTime)
         {
             _slider.value = currentTime;
         }
