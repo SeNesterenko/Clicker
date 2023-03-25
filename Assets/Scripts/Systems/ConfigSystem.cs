@@ -12,19 +12,22 @@ namespace Systems
         [SerializeField] private BusinessConfig _businessConfig;
 
         private BusinessModel[] _businessModels;
-        
         private CompositeDisposable _subscriptions;
 
         public BusinessModel[] Initialize()
         {
+            CreateBusinessModels();
+            return _businessModels;
+        }
+
+        private void Awake()
+        {
             _subscriptions = new CompositeDisposable
             {
                 EventStreams.Game.Subscribe<LevelPriceUpEvent>(CountPriceLevelUp),
-                EventStreams.Game.Subscribe<TimeIncomeEvent>(DistributeIncome)
+                EventStreams.Game.Subscribe<TimeIncomeEvent>(DistributeIncome),
+                EventStreams.Game.Subscribe<IncomeUpdateEvent>(InitializeUpdateIncome)
             };
-            
-            CreateBusinessModels();
-            return _businessModels;
         }
 
         private void CreateBusinessModels()
@@ -39,13 +42,13 @@ namespace Systems
                 var income = _businessConfig.BusinessModels[i].Income;
                 var price = _businessConfig.BusinessModels[i].Price;
                 
-                var businessImproves = CreateBusinessImproves(i);
+                var businessImproves = CreateBusinessImproveModels(i);
 
                 _businessModels[i] = new BusinessModel(businessName, incomeDelay, level, income, income, price, businessImproves);
             }
         }
 
-        private BusinessImprovementModel[] CreateBusinessImproves(int index)
+        private BusinessImprovementModel[] CreateBusinessImproveModels(int index)
         {
             var businessImproves = new BusinessImprovementModel[_businessConfig.BusinessModels[index].TypesImprovement.Length];
             for (var j = 0; j < businessImproves.Length; j++)
@@ -62,6 +65,11 @@ namespace Systems
             return businessImproves;
         }
 
+        private void InitializeUpdateIncome(IncomeUpdateEvent eventData)
+        {
+            CountIncome(eventData.BusinessModel);
+        }
+        
         private void DistributeIncome(TimeIncomeEvent eventData)
         {
             var businessModel = eventData.BusinessModel;
@@ -76,8 +84,8 @@ namespace Systems
             var secondImproveBoost = businessModel.BusinessImprovementModels[1].IsPurchased ? 
                 businessModel.BusinessImprovementModels[1].BoostIncome : 0;
             
-            businessModel.CurrentIncome = businessModel.Level * businessModel.BaseIncome + (firstImproveBoost
-                                                            + secondImproveBoost);
+            businessModel.CurrentIncome = businessModel.Level * businessModel.BaseIncome + 
+                                          (firstImproveBoost + secondImproveBoost);
         }
 
         private void CountPriceLevelUp(LevelPriceUpEvent eventData)

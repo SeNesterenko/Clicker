@@ -1,5 +1,9 @@
+using System;
+using Newtonsoft.Json;
+
 namespace Models
 {
+    [Serializable] 
     public class BusinessModel
     {
         public string Name { get; }

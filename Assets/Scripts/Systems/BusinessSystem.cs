@@ -8,7 +8,6 @@ namespace Systems
     {
         [SerializeField] private Transform _parent;
         [SerializeField] private BusinessController _businessPrefab;
-        [SerializeField] private ConfigSystem _configSystem;
 
         public void Initialize(BusinessModel[] businessModels)
         {

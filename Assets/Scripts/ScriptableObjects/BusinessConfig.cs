@@ -7,9 +7,7 @@ namespace ScriptableObjects
     public class BusinessConfig : ScriptableObject
     {
         public ConfigBusinessModel[] BusinessModels => _businessModel;
-        public float StartPlayerBalance => _startPlayerBalance;
-        
+
         [SerializeField] private ConfigBusinessModel[] _businessModel;
-        [SerializeField] private float _startPlayerBalance;
     }
 }

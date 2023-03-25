@@ -1,5 +1,8 @@
+using System;
+
 namespace Models
 {
+    [Serializable]
     public class BusinessImprovementModel
     {
         public string Name { get; }
