@@ -25,7 +25,7 @@ namespace Controllers
         }
         public void OnContiueGame()
         {
-            EventStreams.Game.Publish(new ContinueGameEvent());
+            EventStreams.Game.Publish(new ChangeScreenEvent());
         }
 
         private void OnSaveGame()

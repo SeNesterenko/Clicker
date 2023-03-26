@@ -16,36 +16,45 @@ namespace Systems
         private CompositeDisposable _subscriptions;
 
         [UsedImplicitly]
-        public void SetPauseScreen()
-        {
-            FadeIn(_gameScreen);
-            FadeOut(_menuScreen,0);
-        }
-
-        public void SetGameScreen(ContinueGameEvent eventData)
-        {
-            FadeIn(_menuScreen);
-            FadeOut(_gameScreen,1);
-        }
-        
         public void Dispose()
         {
             _subscriptions?.Dispose();
+        }
+
+        public void SetPauseGame()
+        {
+            FadeIn(_gameScreen);
+            FadeOut(_menuScreen,0);
         }
 
         private void Awake()
         {
             _subscriptions = new CompositeDisposable
             {
-              //  EventStreams.Game.Subscribe<ChangeScreenEvent>(InitializeChangeState),
-                EventStreams.Game.Subscribe<ContinueGameEvent>(SetGameScreen)
+                EventStreams.Game.Subscribe<ChangeScreenEvent>(InitializeChangeState),
+                EventStreams.Game.Subscribe<ChangeScreenEvent>(InitializeChangeState)
             };
         }
 
-       // private void InitializeChangeState(ChangeScreenEvent eventData)
-       // {
-       //     SetGameScreen();
-       // }
+        private void InitializeChangeState(ChangeScreenEvent eventData)
+        {
+            ChangeState();
+        }
+
+        public void ChangeState()
+        {
+            _isPauseScreen = !_isPauseScreen;
+            if (_isPauseScreen)
+            {
+                FadeIn(_gameScreen);
+                FadeOut(_menuScreen,0);
+            }
+            else
+            {
+                FadeIn(_menuScreen);
+                FadeOut(_gameScreen,1);
+            }
+        }
 
         private void FadeIn(CanvasGroup disappearingCanvas)
         {

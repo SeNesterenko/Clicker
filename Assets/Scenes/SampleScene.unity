@@ -281,7 +281,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1847042409}
         m_TargetAssemblyTypeName: Systems.CanvasGroupSystem, Assembly-CSharp
-        m_MethodName: SetPauseScreen
+        m_MethodName: SetPauseGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
