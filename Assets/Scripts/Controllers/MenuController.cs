@@ -14,16 +14,9 @@ namespace Controllers
 
         private void Awake()
         {
-            _newGame.onClick.AddListener(OnStartNewGame);
-            
-            _exitGameWithoutSave.onClick.AddListener(OnExitGame);
-            
-            _exitGame.onClick.AddListener(OnSaveGame);
-            _exitGame.onClick.AddListener(OnExitGame);
-            
-            _continue.onClick.AddListener(OnContiueGame);
+            EventSubscription();
         }
-        public void OnContiueGame()
+        public void OnContinueGame()
         {
             EventStreams.Game.Publish(new ChangeScreenEvent());
         }
@@ -42,6 +35,15 @@ namespace Controllers
         {
             EventStreams.Game.Publish(new NewGameEvent());
             EventStreams.Game.Publish(new ChangeScreenEvent());
+        }
+
+        private void EventSubscription()
+        {
+            _newGame.onClick.AddListener(OnStartNewGame);
+            _exitGameWithoutSave.onClick.AddListener(OnExitGame);
+            _exitGame.onClick.AddListener(OnSaveGame);
+            _exitGame.onClick.AddListener(OnExitGame);
+            _continue.onClick.AddListener(OnContinueGame);
         }
     }
 }
