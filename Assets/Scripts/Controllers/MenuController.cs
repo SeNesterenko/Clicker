@@ -13,6 +13,14 @@ namespace Controllers
         private void Awake()
         {
             _exitGameWithoutSave.onClick.AddListener(OnExitGame);
+            
+            _exitGame.onClick.AddListener(OnSaveGame);
+            _exitGame.onClick.AddListener(OnExitGame);
+        }
+
+        private void OnSaveGame()
+        {
+            EventStreams.Game.Publish(new SaveGameEvent());
         }
 
         private void OnExitGame()

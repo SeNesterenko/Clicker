@@ -1,3 +1,5 @@
+using System;
+using Events;
 using Interfaces;
 using Systems;
 using Models;
@@ -5,7 +7,7 @@ using SimpleEventBus.Disposables;
 using Systems.FileSystems;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, IDisposable
 {
     [SerializeField] private IncomeSystem _incomeSystem;
     [SerializeField] private ImprovementSystem _improvementSystem;
@@ -17,11 +19,21 @@ public class GameManager : MonoBehaviour
     private ILoadFileSystem _loadFileSystem;
     private IDeleteFileSystem _deleteFileSystem;
 
-    private CompositeDisposable _subscribes;
+    private CompositeDisposable _subscriptions;
 
+    public void Dispose()
+    {
+        _subscriptions?.Dispose();
+    }
+    
     private void Start()
     {
         InitializeSystems();
+
+        _subscriptions = new CompositeDisposable
+        {
+            EventStreams.Game.Subscribe<SaveGameEvent>(InitializeSaveGame)
+        };
 
         var saveData = _loadFileSystem.Load();
         BusinessModel[] models;
@@ -57,10 +69,11 @@ public class GameManager : MonoBehaviour
         _deleteFileSystem = new JsonFileFileSystem();
     }
     
-    private void CollectSaveData()
+    private void InitializeSaveGame(SaveGameEvent eventData)
     {
         var businessModels = _configSystem.GetBusinessModels();
         var playerBalance = _incomeSystem.GetPlayerBalance();
         var saveData = new SaveData(playerBalance, businessModels);
+        _saveFileSystem.Save(saveData);
     }
 }
