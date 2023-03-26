@@ -5,9 +5,10 @@ namespace Systems
 {
     public class CanvasGroupSystem : MonoBehaviour
     {
-        [SerializeField] private CanvasGroup _canvasGroup;
         [SerializeField] private CanvasGroup _gameCanvasGroup;
-        
+        [SerializeField] private CanvasGroup _gameOverCanvasGroup;
+
+        private Tween _tween;
         private bool _canvasVisible;
         private bool _fadeIn;
         private bool _fadeOut;
@@ -16,28 +17,33 @@ namespace Systems
         {
             if (!_canvasVisible)
             {
-                FadeIn();
+                FadeIn(_gameCanvasGroup);
+                FadeOut(_gameOverCanvasGroup,0);
                 _canvasVisible = true;
-                
             }
             else
             {
-                FadeOut();
+                FadeIn(_gameOverCanvasGroup);
+                FadeOut(_gameCanvasGroup,1);
                 _canvasVisible = false;
             }
             
         }
 
-        private void FadeIn()
+        private void FadeIn(CanvasGroup disappearingCanvas)
         {
-            _canvasGroup.DOFade(1f, 1f);
-            _gameCanvasGroup.DOFade(0f,0.5f);
+            Time.timeScale = 1;
+            disappearingCanvas.DOFade(0f,0.5f).OnComplete(() =>
+            {
+                disappearingCanvas.gameObject.SetActive(false);
+            });
         }
 
-        private void FadeOut()
+        private void FadeOut(CanvasGroup appearingCanvas,int currentTimeScale)
         {
-            _canvasGroup.DOFade(0, 1f);
-            _gameCanvasGroup.DOFade(1f,0.5f);
+            appearingCanvas.gameObject.SetActive(true);
+            appearingCanvas.DOFade(1f,0.5f).OnComplete(() => Time.timeScale = currentTimeScale);
         }
+        
     } 
 }
