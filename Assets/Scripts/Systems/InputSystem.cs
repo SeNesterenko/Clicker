@@ -1,18 +1,15 @@
+using Events;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Systems
 {
     public class InputSystem : MonoBehaviour
     {
-        [SerializeField]
-        private UnityEvent _escapeExit;
-        
         public void Update()
         {
-            if (Input.GetKey(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                _escapeExit.Invoke();
+                EventStreams.Game.Publish(new ChangeScreenEvent());
             }
         }
     }

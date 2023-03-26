@@ -14,24 +14,16 @@ namespace Systems
         
         private bool _isPauseScreen;
         private CompositeDisposable _subscriptions;
-
-        [UsedImplicitly]
+        
         public void Dispose()
         {
             _subscriptions?.Dispose();
-        }
-
-        public void SetPauseGame()
-        {
-            FadeIn(_gameScreen);
-            FadeOut(_menuScreen,0);
         }
 
         private void Awake()
         {
             _subscriptions = new CompositeDisposable
             {
-                EventStreams.Game.Subscribe<ChangeScreenEvent>(InitializeChangeState),
                 EventStreams.Game.Subscribe<ChangeScreenEvent>(InitializeChangeState)
             };
         }
@@ -41,7 +33,7 @@ namespace Systems
             ChangeState();
         }
 
-        public void ChangeState()
+        private void ChangeState()
         {
             _isPauseScreen = !_isPauseScreen;
             if (_isPauseScreen)
