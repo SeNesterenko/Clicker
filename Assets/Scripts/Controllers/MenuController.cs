@@ -33,6 +33,7 @@ namespace Controllers
         private void OnStartNewGame()
         {
             EventStreams.Game.Publish(new NewGameEvent());
+            EventStreams.Game.Publish(new ChangeScreenEvent());
         }
     }
 }

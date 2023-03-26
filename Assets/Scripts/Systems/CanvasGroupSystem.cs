@@ -1,15 +1,19 @@
+using System;
 using DG.Tweening;
+using Events;
+using SimpleEventBus.Disposables;
 using UnityEngine;
 
 namespace Systems
 {
-    public class CanvasGroupSystem : MonoBehaviour
+    public class CanvasGroupSystem : MonoBehaviour, IDisposable
     {
         [SerializeField] private CanvasGroup _gameScreen;
         [SerializeField] private CanvasGroup _menuScreen;
         
         private bool _isPauseScreen;
-
+        private CompositeDisposable _subscriptions;
+        
         public void ChangeStateScreen()
         {
             if (!_isPauseScreen)
@@ -26,6 +30,24 @@ namespace Systems
             }
             
         }
+        
+        public void Dispose()
+        {
+            _subscriptions?.Dispose();
+        }
+
+        private void Awake()
+        {
+            _subscriptions = new CompositeDisposable
+            {
+                EventStreams.Game.Subscribe<ChangeScreenEvent>(InitializeChangeState)
+            };
+        }
+
+        private void InitializeChangeState(ChangeScreenEvent eventData)
+        {
+            ChangeStateScreen();
+        }
 
         private void FadeIn(CanvasGroup disappearingCanvas)
         {
@@ -41,6 +63,5 @@ namespace Systems
             appearingCanvas.gameObject.SetActive(true);
             appearingCanvas.DOFade(1f,0.5f).OnComplete(() => Time.timeScale = currentTimeScale);
         }
-        
     } 
 }
