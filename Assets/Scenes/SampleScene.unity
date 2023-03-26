@@ -595,6 +595,7 @@ GameObject:
   - component: {fileID: 645746482}
   - component: {fileID: 645746481}
   - component: {fileID: 645746486}
+  - component: {fileID: 645746487}
   m_Layer: 5
   m_Name: GameOverScreen
   m_TagString: Untagged
@@ -702,6 +703,21 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &645746487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645746480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a47ca475c71a02e4e96275e2736d9a8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startOver: {fileID: 0}
+  _exitGameWithoutSave: {fileID: 0}
+  _exitGame: {fileID: 1101425801}
 --- !u!1 &756127714
 GameObject:
   m_ObjectHideFlags: 0
