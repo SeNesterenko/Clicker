@@ -10,6 +10,11 @@ namespace Systems
     {
         private CompositeDisposable _subscriptions;
 
+        public void Dispose()
+        {
+            _subscriptions?.Dispose();
+        }
+        
         private void Awake()
         {
             _subscriptions = new CompositeDisposable
@@ -21,11 +26,6 @@ namespace Systems
         private void ExitGame(ExitGameEvent eventData)
         {
             EditorApplication.isPlaying = false;
-        }
-
-        public void Dispose()
-        {
-            _subscriptions?.Dispose();
         }
     }
 }

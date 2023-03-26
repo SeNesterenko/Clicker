@@ -23,6 +23,11 @@ namespace Systems
         {
             return _businessModels;
         }
+        
+        public void Dispose()
+        {
+            _subscriptions?.Dispose();
+        }
 
         private void Awake()
         {
@@ -97,11 +102,6 @@ namespace Systems
             var businessModel = eventData.BusinessModel;
             businessModel.CurrentPrice = (businessModel.Level + 1) * businessModel.BasePrice;
             CountIncome(businessModel);
-        }
-
-        public void Dispose()
-        {
-            _subscriptions?.Dispose();
         }
     }
 }

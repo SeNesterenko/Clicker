@@ -10,6 +10,11 @@ namespace Systems
         private bool _isEscapeLock;
         private CompositeDisposable _subscriptions;
 
+        public void Dispose()
+        {
+            _subscriptions?.Dispose();
+        }
+        
         private void Awake()
         {
             _subscriptions = new CompositeDisposable
@@ -25,11 +30,6 @@ namespace Systems
                 EventStreams.Game.Publish(new ChangeScreenEvent());
                 _isEscapeLock = true;
             }
-        }
-        
-        public void Dispose()
-        {
-            _subscriptions?.Dispose();
         }
 
         private void LockEscape(UnlockEscapeEvent eventData)

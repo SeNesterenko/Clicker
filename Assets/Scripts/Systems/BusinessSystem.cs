@@ -28,7 +28,6 @@ namespace Systems
             {
                 Destroy(controller.gameObject);
             }
-            
             _controllers.Clear();
         }
     }

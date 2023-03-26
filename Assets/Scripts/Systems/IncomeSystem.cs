@@ -21,6 +21,11 @@ namespace Systems
         {
             return _playerBalanceController.GetPlayerModel().Balance;
         }
+        
+        public void Dispose()
+        {
+            _subscriptions?.Dispose();
+        }
 
         private void Awake()
         {
@@ -45,11 +50,6 @@ namespace Systems
         private void AddBalanceToEventContext(LevelUpWithoutBalanceEvent eventData)
         {
             EventStreams.Game.Publish(new LevelUpWithBalanceEvent(eventData.BusinessModel, _playerBalanceController.GetPlayerModel()));
-        }
-        
-        public void Dispose()
-        {
-            _subscriptions?.Dispose();
         }
     }
 }
