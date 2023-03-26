@@ -12,7 +12,7 @@ namespace Controllers
 
         private void Awake()
         {
-            _exitGame.onClick.AddListener(OnExitGame);
+            _exitGameWithoutSave.onClick.AddListener(OnExitGame);
         }
 
         private void OnExitGame()
