@@ -45,6 +45,7 @@ namespace Systems
             {
                 FadeIn(_menuScreen);
                 FadeOut(_gameScreen,1);
+                EventStreams.Game.Publish(new UnlockEscapeEvent());
             }
         }
 
