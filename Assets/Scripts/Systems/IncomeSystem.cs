@@ -15,18 +15,21 @@ namespace Systems
         public void Initialize(float startBalance)
         {
             _playerBalanceController.Initialize(startBalance);
-            
+        }
+
+        public float GetPlayerBalance()
+        {
+            return _playerBalanceController.GetPlayerModel().Balance;
+        }
+
+        private void Awake()
+        {
             _subscriptions = new CompositeDisposable
             {
                 EventStreams.Game.Subscribe<LevelUpWithoutBalanceEvent>(AddBalanceToEventContext),
                 EventStreams.Game.Subscribe<BusinessImproveWithoutBalanceEvent>(AddBalanceToEventContext),
                 EventStreams.Game.Subscribe<BalanceUpEvent>(PlayerBalanceUp)
             };
-        }
-
-        public float GetPlayerBalance()
-        {
-            return _playerBalanceController.GetPlayerModel().Balance;
         }
 
         private void PlayerBalanceUp(BalanceUpEvent eventData)

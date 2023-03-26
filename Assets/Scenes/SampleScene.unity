@@ -578,7 +578,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _incomeSystem: {fileID: 944254147}
-  _improvementSystem: {fileID: 1772254036}
   _configSystem: {fileID: 1120523865}
   _businessSystem: {fileID: 1922333235}
   _canvasGroupSystem: {fileID: 1847042409}
@@ -715,7 +714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a47ca475c71a02e4e96275e2736d9a8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startOver: {fileID: 2096722983}
+  _newGame: {fileID: 2096722983}
   _exitGameWithoutSave: {fileID: 1267078282}
   _exitGame: {fileID: 1101425801}
 --- !u!1 &725505976
@@ -1390,7 +1389,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Start over
+  m_text: New game
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2846,7 +2845,7 @@ GameObject:
   - component: {fileID: 2096722984}
   - component: {fileID: 2096722983}
   m_Layer: 5
-  m_Name: Start over
+  m_Name: NewGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

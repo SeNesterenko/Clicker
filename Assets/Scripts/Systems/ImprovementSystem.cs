@@ -10,8 +10,13 @@ namespace Systems
         [SerializeField] private int _countOfLevels = 5;
         
         private CompositeDisposable _subscriptions;
+
+        public void Dispose()
+        {
+            _subscriptions?.Dispose();
+        }
         
-        public void Initialize()
+        private void Awake()
         {
             _subscriptions = new CompositeDisposable
             {
@@ -44,11 +49,6 @@ namespace Systems
                 EventStreams.Game.Publish(new LevelPriceUpEvent(businessModel));
             }
            
-        }
-
-        public void Dispose()
-        {
-            _subscriptions?.Dispose();
         }
     }
 }

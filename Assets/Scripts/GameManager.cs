@@ -10,7 +10,6 @@ using UnityEngine;
 public class GameManager : MonoBehaviour, IDisposable
 {
     [SerializeField] private IncomeSystem _incomeSystem;
-    [SerializeField] private ImprovementSystem _improvementSystem;
     [SerializeField] private ConfigSystem _configSystem;
     [SerializeField] private BusinessSystem _businessSystem;
     [SerializeField] private CanvasGroupSystem _canvasGroupSystem;
@@ -26,15 +25,21 @@ public class GameManager : MonoBehaviour, IDisposable
         _subscriptions?.Dispose();
     }
     
-    private void Start()
+    private void Awake()
     {
         InitializeFileSystems();
 
         _subscriptions = new CompositeDisposable
         {
-            EventStreams.Game.Subscribe<SaveGameEvent>(InitializeSaveGame)
+            EventStreams.Game.Subscribe<SaveGameEvent>(InitializeSaveGame),
+            EventStreams.Game.Subscribe<NewGameEvent>(InitializeNewGame)
         };
 
+        StartGame();
+    }
+
+    private void StartGame()
+    {
         var saveData = _loadFileSystem.Load();
         BusinessModel[] models;
 
@@ -49,9 +54,8 @@ public class GameManager : MonoBehaviour, IDisposable
             models = saveData.BusinessModels;
             _incomeSystem.Initialize(saveData.Balance);
         }
-       
+
         _businessSystem.Initialize(models);
-        _improvementSystem.Initialize();
     }
 
     public void Update()
@@ -75,5 +79,12 @@ public class GameManager : MonoBehaviour, IDisposable
         var playerBalance = _incomeSystem.GetPlayerBalance();
         var saveData = new SaveData(playerBalance, businessModels);
         _saveFileSystem.Save(saveData);
+    }
+
+    private void InitializeNewGame(NewGameEvent eventData)
+    {
+        _deleteFileSystem.Delete();
+        _businessSystem.ResetControllers();
+        StartGame();
     }
 }
