@@ -597,7 +597,7 @@ GameObject:
   - component: {fileID: 645746486}
   - component: {fileID: 645746487}
   m_Layer: 5
-  m_Name: GameOverScreen
+  m_Name: MenuScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -716,8 +716,52 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startOver: {fileID: 0}
-  _exitGameWithoutSave: {fileID: 0}
-  _exitGame: {fileID: 1101425801}
+  _exitGameWithoutSave: {fileID: 1267078282}
+  _exitGame: {fileID: 0}
+--- !u!1 &725505976
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 725505977}
+  - component: {fileID: 725505978}
+  m_Layer: 0
+  m_Name: ExitGameSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &725505977
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 725505976}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 756127715}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &725505978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 725505976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d11a14a5107251b4c840139731ba8b34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &756127714
 GameObject:
   m_ObjectHideFlags: 0
@@ -752,6 +796,7 @@ Transform:
   - {fileID: 1772254035}
   - {fileID: 1120523864}
   - {fileID: 1847042408}
+  - {fileID: 725505977}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -844,7 +889,7 @@ GameObject:
   - component: {fileID: 905596107}
   - component: {fileID: 905596106}
   m_Layer: 5
-  m_Name: Start over (1)
+  m_Name: Continue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2282,8 +2327,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 258cfc6d3cbda7b45b2cd095a65cd782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameCanvasGroup: {fileID: 470982596}
-  _gameOverCanvasGroup: {fileID: 645746486}
+  _gameScreen: {fileID: 0}
+  _gameOverScreen: {fileID: 0}
 --- !u!1 &1910523908
 GameObject:
   m_ObjectHideFlags: 0
