@@ -1,6 +1,7 @@
 using System;
 using DG.Tweening;
 using Events;
+using JetBrains.Annotations;
 using SimpleEventBus.Disposables;
 using UnityEngine;
 
@@ -13,22 +14,18 @@ namespace Systems
         
         private bool _isPauseScreen;
         private CompositeDisposable _subscriptions;
-        
-        public void ChangeStateScreen()
+
+        [UsedImplicitly]
+        public void SetPauseScreen()
         {
-            if (!_isPauseScreen)
-            {
-                FadeIn(_gameScreen);
-                FadeOut(_menuScreen,0);
-                _isPauseScreen = true;
-            }
-            else
-            {
-                FadeIn(_menuScreen);
-                FadeOut(_gameScreen,1);
-                _isPauseScreen = false;
-            }
-            
+            FadeIn(_gameScreen);
+            FadeOut(_menuScreen,0);
+        }
+
+        public void SetGameScreen(ContinueGameEvent eventData)
+        {
+            FadeIn(_menuScreen);
+            FadeOut(_gameScreen,1);
         }
         
         public void Dispose()
@@ -40,14 +37,15 @@ namespace Systems
         {
             _subscriptions = new CompositeDisposable
             {
-                EventStreams.Game.Subscribe<ChangeScreenEvent>(InitializeChangeState)
+              //  EventStreams.Game.Subscribe<ChangeScreenEvent>(InitializeChangeState),
+                EventStreams.Game.Subscribe<ContinueGameEvent>(SetGameScreen)
             };
         }
 
-        private void InitializeChangeState(ChangeScreenEvent eventData)
-        {
-            ChangeStateScreen();
-        }
+       // private void InitializeChangeState(ChangeScreenEvent eventData)
+       // {
+       //     SetGameScreen();
+       // }
 
         private void FadeIn(CanvasGroup disappearingCanvas)
         {
@@ -63,5 +61,6 @@ namespace Systems
             appearingCanvas.gameObject.SetActive(true);
             appearingCanvas.DOFade(1f,0.5f).OnComplete(() => Time.timeScale = currentTimeScale);
         }
+        
     } 
 }

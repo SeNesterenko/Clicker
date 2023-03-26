@@ -58,14 +58,6 @@ public class GameManager : MonoBehaviour, IDisposable
         _businessSystem.Initialize(models);
     }
 
-    public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            _canvasGroupSystem.ChangeStateScreen();
-        }
-    }
-
     private void InitializeFileSystems()
     {
         _saveFileSystem = new JsonFileFileSystem();
