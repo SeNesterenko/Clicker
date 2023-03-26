@@ -624,7 +624,7 @@ MonoBehaviour:
   _incomeSystem: {fileID: 944254147}
   _configSystem: {fileID: 1120523865}
   _businessSystem: {fileID: 1922333235}
-  _canvasGroupSystem: {fileID: 1847042409}
+  _canvasGroupSystem: {fileID: 0}
 --- !u!1 &645746480
 GameObject:
   m_ObjectHideFlags: 0
@@ -1615,7 +1615,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6769336352883705586, guid: 88135522bdde04eccadbdbb0838faa7f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 863.7
+      value: 809
       objectReference: {fileID: 0}
     - target: {fileID: 6769336352883705586, guid: 88135522bdde04eccadbdbb0838faa7f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2485,7 +2485,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &1984117650
 RectTransform:
@@ -2521,7 +2521,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2696,7 +2696,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &1998046300
 RectTransform:
@@ -2732,7 +2732,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
