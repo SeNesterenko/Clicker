@@ -1,7 +1,7 @@
 using System;
-using Controllers;
 using Events;
 using SimpleEventBus.Disposables;
+using UnityEditor;
 using UnityEngine;
 
 namespace Systems
@@ -20,7 +20,7 @@ namespace Systems
         
         private void ExitGame(ExitGameEvent eventData)
         {
-            
+            EditorApplication.isPlaying = false;
         }
 
         public void Dispose()
