@@ -25,8 +25,11 @@ namespace Controllers
 
         private void OnImproveBusiness()
         {
-            EventStreams.Game.Publish(new BusinessImproveWithoutBalanceEvent(_model));
-            _incomeUpdate?.Invoke();
+            if (!_model.IsPurchased)
+            {
+                EventStreams.Game.Publish(new BusinessImproveWithoutBalanceEvent(_model));
+                _incomeUpdate?.Invoke();
+            }
         }
 
         private void Update()

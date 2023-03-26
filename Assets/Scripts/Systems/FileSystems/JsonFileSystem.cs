@@ -1,17 +1,17 @@
 using System.IO;
+using Interfaces;
 using Models;
 using Newtonsoft.Json;
 using UnityEngine;
 
-namespace Systems.SaveSystem
+namespace Systems.FileSystems
 {
-
-    public class JSONSaveSystem : ISaveSystem
+    public class JsonFileSystem : ISaveSystem, ILoadFileSystem, IDeleteFileSystem
     {
         private readonly string _filePath;
         private readonly JsonSerializer _serializer;
 
-        public JSONSaveSystem()
+        public JsonFileSystem()
         {
             _filePath = Application.persistentDataPath + "/Save.json";
             _serializer = new JsonSerializer();
@@ -36,6 +36,14 @@ namespace Systems.SaveSystem
             var saveData = _serializer.Deserialize<SaveData>(reader);
 
             return saveData;
+        }
+
+        public void Delete()
+        {
+            if (File.Exists(_filePath))
+            {
+                File.Delete(_filePath);
+            }
         }
     }
 }

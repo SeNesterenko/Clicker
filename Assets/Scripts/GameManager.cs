@@ -1,7 +1,8 @@
 using System;
+using Interfaces;
 using Systems;
 using Models;
-using Systems.SaveSystem;
+using Systems.FileSystems;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -13,15 +14,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CanvasGroupSystem _canvasGroupSystem;
     
     private ISaveSystem _saveSystem;
+    private ILoadFileSystem _loadFileSystem;
+    private IDeleteFileSystem _deleteSystem;
+    
     private BusinessModel[] _models;
 
     private void Start()
     {
         InitializeSystems();
 
-        var saveData = _saveSystem.Load();
-        
-        
+        var saveData = _loadFileSystem.Load();
+
         if (saveData == null)
         {
             _incomeSystem.Initialize(0);
@@ -52,7 +55,9 @@ public class GameManager : MonoBehaviour
 
     private void InitializeSystems()
     {
-        _saveSystem = new JSONSaveSystem();
+        _saveSystem = new JsonFileSystem();
+        _loadFileSystem = new JsonFileSystem();
+        _deleteSystem = new JsonFileSystem();
     }
     
     private void OnGameQuit()
