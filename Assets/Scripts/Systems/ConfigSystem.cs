@@ -88,8 +88,11 @@ namespace Systems
             var secondImproveBoost = businessModel.BusinessImprovementModels[1].IsPurchased ? 
                 businessModel.BusinessImprovementModels[1].BoostIncome : 0;
             
-            businessModel.CurrentIncome = businessModel.Level * businessModel.BaseIncome + 
-                                          (firstImproveBoost + secondImproveBoost);
+            var income = businessModel.Level * businessModel.BaseIncome + 
+                         (firstImproveBoost + secondImproveBoost);
+
+            if (income > 0)
+                businessModel.CurrentIncome = income;
         }
 
         private void CountPriceLevelUp(LevelPriceUpEvent eventData)
