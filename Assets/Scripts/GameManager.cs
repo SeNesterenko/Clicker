@@ -12,8 +12,7 @@ public class GameManager : MonoBehaviour, IDisposable
     [SerializeField] private IncomeSystem _incomeSystem;
     [SerializeField] private ConfigSystem _configSystem;
     [SerializeField] private BusinessSystem _businessSystem;
-    [SerializeField] private CanvasGroupSystem _canvasGroupSystem;
-    
+
     private ISaveFileSystem _saveFileSystem;
     private ILoadFileSystem _loadFileSystem;
     private IDeleteFileSystem _deleteFileSystem;
