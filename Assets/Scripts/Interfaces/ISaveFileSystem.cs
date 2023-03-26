@@ -2,7 +2,7 @@ using Models;
 
 namespace Interfaces
 {
-    public interface ISaveSystem
+    public interface ISaveFileSystem
     {
         public void Save(SaveData saveData);
     }

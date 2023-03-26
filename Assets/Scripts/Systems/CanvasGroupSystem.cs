@@ -5,27 +5,24 @@ namespace Systems
 {
     public class CanvasGroupSystem : MonoBehaviour
     {
-        [SerializeField] private CanvasGroup _gameCanvasGroup;
-        [SerializeField] private CanvasGroup _gameOverCanvasGroup;
-
-        private Tween _tween;
-        private bool _canvasVisible;
-        private bool _fadeIn;
-        private bool _fadeOut;
+        [SerializeField] private CanvasGroup _gameScreen;
+        [SerializeField] private CanvasGroup _gameOverScreen;
         
+        private bool _isPauseScreen;
+
         public void MenuGame()
         {
-            if (!_canvasVisible)
+            if (!_isPauseScreen)
             {
-                FadeIn(_gameCanvasGroup);
-                FadeOut(_gameOverCanvasGroup,0);
-                _canvasVisible = true;
+                FadeIn(_gameScreen);
+                FadeOut(_gameOverScreen,0);
+                _isPauseScreen = true;
             }
             else
             {
-                FadeIn(_gameOverCanvasGroup);
-                FadeOut(_gameCanvasGroup,1);
-                _canvasVisible = false;
+                FadeIn(_gameOverScreen);
+                FadeOut(_gameScreen,1);
+                _isPauseScreen = false;
             }
             
         }

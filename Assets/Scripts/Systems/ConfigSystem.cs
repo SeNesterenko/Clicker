@@ -14,9 +14,13 @@ namespace Systems
         private BusinessModel[] _businessModels;
         private CompositeDisposable _subscriptions;
 
-        public BusinessModel[] Initialize()
+        public void Initialize()
         {
             CreateBusinessModels();
+        }
+
+        public BusinessModel[] GetBusinessModels()
+        {
             return _businessModels;
         }
 

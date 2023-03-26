@@ -1,7 +1,7 @@
-using System;
 using Interfaces;
 using Systems;
 using Models;
+using SimpleEventBus.Disposables;
 using Systems.FileSystems;
 using UnityEngine;
 
@@ -13,30 +13,32 @@ public class GameManager : MonoBehaviour
     [SerializeField] private BusinessSystem _businessSystem;
     [SerializeField] private CanvasGroupSystem _canvasGroupSystem;
     
-    private ISaveSystem _saveSystem;
+    private ISaveFileSystem _saveFileSystem;
     private ILoadFileSystem _loadFileSystem;
-    private IDeleteFileSystem _deleteSystem;
-    
-    private BusinessModel[] _models;
+    private IDeleteFileSystem _deleteFileSystem;
+
+    private CompositeDisposable _subscribes;
 
     private void Start()
     {
         InitializeSystems();
 
         var saveData = _loadFileSystem.Load();
+        BusinessModel[] models;
 
         if (saveData == null)
         {
             _incomeSystem.Initialize(0);
-            _models = _configSystem.Initialize();
+            _configSystem.Initialize();
+            models = _configSystem.GetBusinessModels();
         }
         else
         {
-            _models = saveData.BusinessModels;
+            models = saveData.BusinessModels;
             _incomeSystem.Initialize(saveData.Balance);
         }
        
-        _businessSystem.Initialize(_models);
+        _businessSystem.Initialize(models);
         _improvementSystem.Initialize();
     }
 
@@ -48,21 +50,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
-    {
-        OnGameQuit();
-    }
-
     private void InitializeSystems()
     {
-        _saveSystem = new JsonFileSystem();
-        _loadFileSystem = new JsonFileSystem();
-        _deleteSystem = new JsonFileSystem();
+        _saveFileSystem = new JsonFileFileSystem();
+        _loadFileSystem = new JsonFileFileSystem();
+        _deleteFileSystem = new JsonFileFileSystem();
     }
     
-    private void OnGameQuit()
+    private void CollectSaveData()
     {
-        var saveData = new SaveData(_incomeSystem.GetPlayerBalance(), _models);
-        _saveSystem.Save(saveData);
+        var businessModels = _configSystem.GetBusinessModels();
+        var playerBalance = _incomeSystem.GetPlayerBalance();
+        var saveData = new SaveData(playerBalance, businessModels);
     }
 }

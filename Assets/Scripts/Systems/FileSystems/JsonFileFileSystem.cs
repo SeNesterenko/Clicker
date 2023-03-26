@@ -8,14 +8,14 @@ using UnityEngine;
 
 namespace Systems.FileSystems
 {
-    public class JsonFileSystem : ISaveSystem, ILoadFileSystem, IDeleteFileSystem
+    public class JsonFileFileSystem : ISaveFileSystem, ILoadFileSystem, IDeleteFileSystem
     {
         private readonly string _filePath;
         private readonly JsonSerializer _serializer;
 
         private readonly CompositeDisposable _subscriptions;
 
-        public JsonFileSystem()
+        public JsonFileFileSystem()
         {
             _filePath = Application.persistentDataPath + "/Save.json";
             _serializer = new JsonSerializer();
