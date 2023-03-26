@@ -715,9 +715,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a47ca475c71a02e4e96275e2736d9a8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startOver: {fileID: 0}
+  _startOver: {fileID: 2096722983}
   _exitGameWithoutSave: {fileID: 1267078282}
-  _exitGame: {fileID: 0}
+  _exitGame: {fileID: 1101425801}
 --- !u!1 &725505976
 GameObject:
   m_ObjectHideFlags: 0
@@ -2327,8 +2327,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 258cfc6d3cbda7b45b2cd095a65cd782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameScreen: {fileID: 0}
-  _gameOverScreen: {fileID: 0}
+  _gameScreen: {fileID: 470982596}
+  _menuScreen: {fileID: 645746486}
 --- !u!1 &1910523908
 GameObject:
   m_ObjectHideFlags: 0

@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour, IDisposable
     
     private void Start()
     {
-        InitializeSystems();
+        InitializeFileSystems();
 
         _subscriptions = new CompositeDisposable
         {
@@ -58,11 +58,11 @@ public class GameManager : MonoBehaviour, IDisposable
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            _canvasGroupSystem.MenuGame();
+            _canvasGroupSystem.ChangeStateScreen();
         }
     }
 
-    private void InitializeSystems()
+    private void InitializeFileSystems()
     {
         _saveFileSystem = new JsonFileFileSystem();
         _loadFileSystem = new JsonFileFileSystem();

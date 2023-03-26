@@ -6,21 +6,21 @@ namespace Systems
     public class CanvasGroupSystem : MonoBehaviour
     {
         [SerializeField] private CanvasGroup _gameScreen;
-        [SerializeField] private CanvasGroup _gameOverScreen;
+        [SerializeField] private CanvasGroup _menuScreen;
         
         private bool _isPauseScreen;
 
-        public void MenuGame()
+        public void ChangeStateScreen()
         {
             if (!_isPauseScreen)
             {
                 FadeIn(_gameScreen);
-                FadeOut(_gameOverScreen,0);
+                FadeOut(_menuScreen,0);
                 _isPauseScreen = true;
             }
             else
             {
-                FadeIn(_gameOverScreen);
+                FadeIn(_menuScreen);
                 FadeOut(_gameScreen,1);
                 _isPauseScreen = false;
             }
