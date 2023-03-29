@@ -3,9 +3,9 @@ using Controllers;
 using Models;
 using UnityEngine;
 
-namespace Systems
+namespace Services
 {
-    public class BusinessSystem : MonoBehaviour
+    public class BusinessService : MonoBehaviour
     {
         [SerializeField] private Transform _parent;
         [SerializeField] private BusinessController _businessControllerPrefab;

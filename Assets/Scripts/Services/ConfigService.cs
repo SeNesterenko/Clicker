@@ -5,9 +5,9 @@ using ScriptableObjects;
 using SimpleEventBus.Disposables;
 using UnityEngine;
 
-namespace Systems
+namespace Services
 {
-    public class ConfigSystem : MonoBehaviour,IDisposable
+    public class ConfigService : MonoBehaviour,IDisposable
     {
         [SerializeField] private BusinessConfig _businessConfig;
 

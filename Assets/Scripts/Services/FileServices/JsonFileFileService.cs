@@ -1,19 +1,17 @@
 using System.IO;
-using Events;
 using Interfaces;
 using Models;
 using Newtonsoft.Json;
-using SimpleEventBus.Disposables;
 using UnityEngine;
 
-namespace Systems.FileSystems
+namespace Services.FileServices
 {
-    public class JsonFileFileSystem : ISaveFileSystem, ILoadFileSystem, IDeleteFileSystem
+    public class JsonFileFileService : ISaveFileSystem, ILoadFileSystem, IDeleteFileSystem
     {
         private readonly string _filePath;
         private readonly JsonSerializer _serializer;
 
-        public JsonFileFileSystem()
+        public JsonFileFileService()
         {
             _filePath = Application.persistentDataPath + "/Save.json";
             _serializer = new JsonSerializer();

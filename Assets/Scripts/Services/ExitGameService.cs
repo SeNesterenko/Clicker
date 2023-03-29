@@ -4,9 +4,9 @@ using SimpleEventBus.Disposables;
 using UnityEditor;
 using UnityEngine;
 
-namespace Systems
+namespace Services
 {
-    public class ExitGameSystem : MonoBehaviour,IDisposable
+    public class ExitGameService : MonoBehaviour, IDisposable
     {
         private CompositeDisposable _subscriptions;
 

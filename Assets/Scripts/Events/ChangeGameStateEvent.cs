@@ -2,7 +2,7 @@ using SimpleEventBus.Events;
 
 namespace Events
 {
-    public class UnlockEscapeEvent : EventBase
+    public class ChangeGameStateEvent : EventBase
     {
         
     }

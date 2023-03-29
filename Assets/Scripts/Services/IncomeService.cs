@@ -4,9 +4,9 @@ using Events;
 using SimpleEventBus.Disposables;
 using UnityEngine;
 
-namespace Systems
+namespace Services
 {
-    public class IncomeSystem : MonoBehaviour, IDisposable
+    public class IncomeService : MonoBehaviour, IDisposable
     {
         [SerializeField] private PlayerBalanceController _playerBalanceController;
         

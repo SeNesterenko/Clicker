@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Controllers
 {
-    public class MenuController : MonoBehaviour
+    public class PauseController : MonoBehaviour
     {
         [SerializeField] private Button _continue;
         [SerializeField] private Button _newGame;
@@ -18,7 +18,7 @@ namespace Controllers
         }
         public void OnContinueGame()
         {
-            EventStreams.Game.Publish(new ChangeScreenEvent());
+            EventStreams.Game.Publish(new ChangeGameStateEvent());
         }
 
         private void OnSaveGame()
@@ -34,7 +34,7 @@ namespace Controllers
         private void OnStartNewGame()
         {
             EventStreams.Game.Publish(new NewGameEvent());
-            EventStreams.Game.Publish(new ChangeScreenEvent());
+            EventStreams.Game.Publish(new ChangeGameStateEvent());
         }
 
         private void EventSubscription()

@@ -3,9 +3,9 @@ using Events;
 using SimpleEventBus.Disposables;
 using UnityEngine;
 
-namespace Systems
+namespace Services
 {
-    public class ImprovementSystem : MonoBehaviour, IDisposable
+    public class ImprovementService : MonoBehaviour, IDisposable
     {
         [SerializeField] private int _countOfLevels = 5;
         
