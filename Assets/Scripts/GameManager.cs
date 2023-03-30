@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour, IDisposable
         else
         {
             models = saveData.BusinessModels;
+            _configService.Initialize(models);
             _incomeService.Initialize(saveData.Balance);
         }
 

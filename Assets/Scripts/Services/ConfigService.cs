@@ -13,10 +13,15 @@ namespace Services
 
         private BusinessModel[] _businessModels;
         private CompositeDisposable _subscriptions;
-
-        public void Initialize()
+        
+        public void Initialize(BusinessModel[] businessModels = null)
         {
-            CreateBusinessModels();
+            if (businessModels == null)
+            {
+                CreateBusinessModels();
+                return;
+            }
+            _businessModels = businessModels;
         }
 
         public BusinessModel[] GetBusinessModels()
@@ -53,7 +58,7 @@ namespace Services
                 
                 var businessImproves = CreateBusinessImproveModels(i);
 
-                _businessModels[i] = new BusinessModel(businessName, incomeDelay, level, income, income, price, businessImproves);
+                _businessModels[i] = new BusinessModel(businessName, incomeDelay, level, income, income, price, price, businessImproves);
             }
         }
 

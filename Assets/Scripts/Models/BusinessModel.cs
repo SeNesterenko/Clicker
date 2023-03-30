@@ -15,14 +15,14 @@ namespace Models
         public float CurrentPrice { get; set; }
         public readonly BusinessImprovementModel[] BusinessImprovementModels;
         
-        public BusinessModel(string name, float incomeDelay, int level, float baseIncome, float currentIncome, float currentPrice, BusinessImprovementModel[] businessImprovementModels)
+        public BusinessModel(string name, float incomeDelay, int level, float baseIncome, float currentIncome, float currentPrice, float basePrice, BusinessImprovementModel[] businessImprovementModels)
         {
             Name = name;
             IncomeDelay = incomeDelay;
             Level = level;
             BaseIncome = baseIncome;
             CurrentIncome = currentIncome;
-            BasePrice = currentPrice;
+            BasePrice = basePrice;
             CurrentPrice = currentPrice;
             BusinessImprovementModels = businessImprovementModels;
         }
