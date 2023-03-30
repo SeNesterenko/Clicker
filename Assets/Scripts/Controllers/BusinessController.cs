@@ -6,7 +6,7 @@ using Views;
 
 namespace Controllers
 {
-    public class BusinessController : MonoBehaviour
+    public class BusinessController : MonoCache
     {
         [SerializeField] private BusinessView _businessView;
         [SerializeField] private ProcessIncomeController _processIncomeController;
@@ -28,6 +28,11 @@ namespace Controllers
             _levelUpButton.onClick.AddListener(OnLevelUp);
             DisplayView();
         }
+        
+        public override void OnTick()
+        {
+            DisplayView();
+        }
 
         private void OnIncomeUpdate()
         {
@@ -42,11 +47,6 @@ namespace Controllers
         private void DisplayView()
         {
             _businessView.Display(_model.Name, _model.Level.ToString(), _model.CurrentIncome.ToString(), _model.CurrentPrice.ToString());
-        }
-
-        private void Update()
-        {
-            DisplayView();
         }
     }
 }

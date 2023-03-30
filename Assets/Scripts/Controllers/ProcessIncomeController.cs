@@ -5,7 +5,7 @@ using Views;
 
 namespace Controllers
 {
-    public class ProcessIncomeController : MonoBehaviour
+    public class ProcessIncomeController : MonoCache
     {
         [SerializeField] private ProcessIncomeView _processIncomeView;
         
@@ -19,8 +19,8 @@ namespace Controllers
             
             _processIncomeView.Display(_currentTime);
         }
- 
-        private void Update()
+
+        public override void OnTick()
         {
             if (_businessModel.Level >= 1)
             {

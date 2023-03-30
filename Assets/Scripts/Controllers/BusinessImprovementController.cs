@@ -7,7 +7,7 @@ using Views;
 
 namespace Controllers
 {
-    public class BusinessImprovementController : MonoBehaviour
+    public class BusinessImprovementController : MonoCache
     {
         [SerializeField] private BusinessImprovementView _businessImprovementView;
         [SerializeField] private Button _businessImproveButton;
@@ -22,6 +22,11 @@ namespace Controllers
             _businessImproveButton.onClick.AddListener(OnImproveBusiness);
             DisplayView();
         }
+        
+        public override void OnTick()
+        {
+            DisplayView();
+        }
 
         private void OnImproveBusiness()
         {
@@ -30,11 +35,6 @@ namespace Controllers
                 EventStreams.Game.Publish(new BusinessImproveWithoutBalanceEvent(_model));
                 _incomeUpdate?.Invoke();
             }
-        }
-
-        private void Update()
-        {
-            DisplayView();
         }
 
         private void DisplayView()

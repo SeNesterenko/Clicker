@@ -4,7 +4,7 @@ using Views;
 
 namespace Controllers
 {
-    public class PlayerBalanceController : MonoBehaviour
+    public class PlayerBalanceController : MonoCache
     {
         [SerializeField] private PlayerBalanceView _playerBalanceView;
 
@@ -18,6 +18,11 @@ namespace Controllers
             };
             DisplayView();
         }
+        
+        public override void OnTick()
+        {
+            DisplayView();
+        }
 
         public PlayerBalanceModel GetPlayerModel()
         {
@@ -27,11 +32,6 @@ namespace Controllers
         private void DisplayView()
         {
             _playerBalanceView.Display(_model.Balance.ToString());
-        }
-
-        private void Update()
-        {
-            DisplayView();
         }
     }
 }
