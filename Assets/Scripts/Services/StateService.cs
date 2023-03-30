@@ -11,6 +11,7 @@ namespace Services
     {
         [SerializeField] private CanvasGroup _gameScreen;
         [SerializeField] private CanvasGroup _pauseScreen;
+        [SerializeField] private GlobalUpdate _globalUpdate;
     
         private StateMachine _stateMachine;
         private CompositeDisposable _subscriptions;
@@ -34,7 +35,7 @@ namespace Services
             _stateMachine.AddState("GameState",
                 _ =>
                 {
-                    FadeOut(_gameScreen,1);
+                    FadeOut(_gameScreen);
                 },
                 state =>
                 {
@@ -52,7 +53,8 @@ namespace Services
             _stateMachine.AddState("PauseState",
                 _ => 
                 {
-                    FadeOut(_pauseScreen,0);
+                    FadeOut(_pauseScreen);
+                    _globalUpdate.gameObject.SetActive(false);
                 },
                 _ =>
                 {
@@ -64,6 +66,7 @@ namespace Services
                 _ =>
                 {
                     FadeIn(_pauseScreen);
+                    _globalUpdate.gameObject.SetActive(true);
                 });
         
             _stateMachine.SetStartState("GameState");
@@ -86,20 +89,16 @@ namespace Services
     
         private void FadeIn(CanvasGroup disappearingCanvas)
         {
-            Time.timeScale = 1;
             disappearingCanvas.DOFade(0f,0.2f).OnComplete(() =>
             {
                 disappearingCanvas.gameObject.SetActive(false);
             });
         }
 
-        private void FadeOut(CanvasGroup appearingCanvas, int currentTimeScale)
+        private void FadeOut(CanvasGroup appearingCanvas)
         {
             appearingCanvas.gameObject.SetActive(true);
-            appearingCanvas.DOFade(1f,0.2f).OnComplete(() =>
-            {
-                Time.timeScale = currentTimeScale;
-            });
+            appearingCanvas.DOFade(1f,0.2f);
         }
     }
 }

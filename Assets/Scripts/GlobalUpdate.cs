@@ -8,5 +8,7 @@ public class GlobalUpdate : MonoBehaviour
         {
             MonoCache.AllUpdates[i].Tick();
         }
+
+        MonoCache.Timer = Time.deltaTime;
     }
 }

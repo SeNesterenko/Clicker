@@ -30,7 +30,7 @@ namespace Controllers
 
         private void UpdateStatusProcessBar()
         {
-            _currentTime += Time.deltaTime;
+            _currentTime += Timer % _timeDelay;
 
             var ratio = _currentTime / _timeDelay;
             if (ratio >= 1)

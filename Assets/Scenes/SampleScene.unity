@@ -1555,6 +1555,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gameScreen: {fileID: 470982596}
   _pauseScreen: {fileID: 645746486}
+  _globalUpdate: {fileID: 1778465602}
 --- !u!1 &1101425799
 GameObject:
   m_ObjectHideFlags: 0
